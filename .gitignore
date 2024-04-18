@@ -1,0 +1,54 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Compiled python files
+__pycache__/
+*.pyc
+
+# Logs
+logs/*
+
+# Program files
+2damrhistss
+combiner
+maggrid_omp
+maggrid
+mapb2s
+seedgen
+shockfront
+sim3d
+sim3d_em
+
+
+# Data files
+20*/

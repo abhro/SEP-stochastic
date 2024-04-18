@@ -1,0 +1,7 @@
+ &inputdxx
+ gperCMS=1.d13
+ bper=0.0
+ aper=1.0
+ &end
+
+gperCMS, c*rg/3=3.33e16 cm^2/s at p=1GV,B=1G,beta=1

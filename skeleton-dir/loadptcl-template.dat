@@ -1,0 +1,13 @@
+sp0, gp, ap, (paramters for artificial drift)
+5.0, 8.0, 1.0e+20
+tdl (when particles split into 2)
+360.0
+rnz,rnm
+1, 1
+nf, np
+4,131072
+time         r(3)               en      mu  array where flux is calculated (things in bangs are template parameters)
+!time! 215.032  95.6 !long!   5.79e-3   0.01
+!time! 215.032  95.6 !long!  13.51e-3   0.01
+!time! 215.032  95.6 !long!  31.98e-3   0.01
+!time! 215.032  95.6 !long!  46.56e-3   0.01

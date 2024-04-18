@@ -1,0 +1,33 @@
+ &inputdmumu
+ du0=0.012
+ rnu=1.666666667,
+ delta=1.,
+ va=50.
+ &end
+
+ &inputdmumuAH
+ du0=3.,
+ b1=1.,
+ a1=0.,
+ &end
+
+ &inputdmumuDG
+ du0=0.012
+ rnu=1.666666667,
+ delta=.01,
+ va=50.
+ &end
+
+ &inputdmumuBK
+ du0=0.5,
+ b1=-0.3333,
+ a1=-0.0,
+ qindx=1.6666
+ sigma=0.,
+ h=.2
+ &end
+
+b1=-1/3, lambda prop to p**(1/3)
+quasilinear theory b1=qindx-2, a=-qindx
+qindx=1.666 Kolmogorov
+qindx=1 Bohm diffusion

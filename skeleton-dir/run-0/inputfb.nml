@@ -1,0 +1,14 @@
+ &fb
+ rb0=1.0
+ rmax=4300.
+ rk=-3.,
+ deltat=2880.
+ tc=120.0
+ tl=240.0
+ tmodel0=0.001,
+ nfbconst=0
+ sclat=57.
+ sclong=331.
+ scanw=45.
+ &end
+
