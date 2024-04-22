@@ -61,15 +61,20 @@ def main():
 
         # Generate mag data
         # run maggrid_omp to generate maggrid.dat
-        maggrid_jobid = submit_sbatch_job(
+        if args.maggrid_file:
+            maggrid_file = args.maggrid_file
+   	    else:
+            maggrid_file = f'{dir_name}/maggrid.dat'
+            maggrid_jobid = submit_sbatch_job(
                 'maggrid.sbatch',
                 dir_name=dir_name,
                 sbatch_executable=args.sbatch_exec,
                 env_vars={
                     'SHTC_FILE': dir_name + '/' + os.path.basename(shtc_fn),
-                    'MAGGRID_FILE': f'{dir_name}/maggrid.dat'
-                })
-        print(f"Running maggrid_omp as job {maggrid_jobid}")
+                    'MAGGRID_FILE': maggrid_file,
+                }
+            )
+            print(f"Running maggrid_omp as job {maggrid_jobid}")
 
         # run mapb2s to get b1rs.dat
         mapb2s_jobid = submit_sbatch_job(
@@ -78,7 +83,7 @@ def main():
                 sbatch_executable=args.sbatch_exec,
                 dependency=maggrid_jobid,
                 env_vars={
-                    'MAGGRID_FILE': f'{dir_name}/maggrid.dat',
+                    'MAGGRID_FILE': maggrid_file,
                     'B1RS_FILE': f'{dir_name}/b1rs.dat'
                 })
         print(f"Queued mapb2s as job {mapb2s_jobid}")
@@ -91,7 +96,7 @@ def main():
         #        sbatch_executable=args.sbatch_exec,
         #        env_vars={
         #            'COMBINER_B1RS_INFILENAME': f'{dir_name}/b1rs.dat',
-        #            'COMBINER_MAGGRID_INFILENAME': f'{dir_name}/maggrid.dat',
+        #            'COMBINER_MAGGRID_INFILENAME': maggrid_file,
         #            'COMBINER_MAGGRID_OUTFILENAME': f'{dir_name}/maggrid_combined.dat'
         #        }
         #)
@@ -105,7 +110,7 @@ def main():
         for time in tt1s:
             sim3d_env = {
                 'B1RS_FILE': f'{dir_name}/b1rs.dat',
-                'MAGGRID_FILE': f'{dir_name}/maggrid.dat',
+                'MAGGRID_FILE': maggrid_file,
                 'ROOT_DIR': dir_name,
                 'tt1': str(time)
             }
@@ -155,6 +160,10 @@ def get_parser():
     root_parser.add_argument(
             '--skeleton-dir', default='./skeleton-dir/',
             help='Alternative path to skeleton directory')
+
+    root_parser.add_argument(
+        	'--maggrid-file',
+        	help='Pre-generated maggrid file (skips running maggrid)')
 
     return root_parser
 
