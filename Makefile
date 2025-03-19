@@ -36,7 +36,7 @@ else
 
 endif
 
-FGSL_OPTS_COMP = -I/usr/local/spack/opt/spack/linux-ubuntu20.04-cascadelake/gcc-9.4.0/gsl-2.7-x2znrtoned4nhaqpluk6oh4jma6tjixe/include -I/home1/arahman2021/.local/include/fgsl
+FGSL_OPTS_COMP =
 
 FFLAGS += $(FGSL_OPTS_COMP)
 
@@ -46,22 +46,22 @@ FGSL_OPTS_LINK = -L/usr/local/spack/opt/spack/linux-ubuntu20.04-cascadelake/gcc-
 
 LDFLAGS += $(FGSL_OPTS_LINK)
 
-
+PROGEXT = # .exe for windows
 
 COMPILE.f90 = $(FC) $(FFLAGS) $(TARGET_ARCH) -c
 LINK.f90 = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 
-MODULE_SRCS = param.f90 file_op.f90 epv.f90 fb.f90 dmumu.f90 \
-              dxx.f90 random.f90 datetime_utils.f90 mtrx.f90 \
-              loadptcl.f90 sim3d_utils.f90 cme_cross.f90 rksolvers.f90
-MODULE_OBJS = $(subst .f90,.o,$(MODULE_SRCS))
-MODULE_MODS = $(subst .f90,.mod,$(MODULE_SRCS))
+MODULE_SRC_BASENAMES = param file_op epv fb dmumu dxx random datetime_utils \
+                       mtrx loadptcl sim3d_utils cme_cross rksolvers
+MODULE_SRCS = $(addprefix src/, $(addsuffix .f90, $(MODULE_SRC_BASENAMES)))
+MODULE_OBJS = $(addsuffix .o,                     $(MODULE_SRC_BASENAMES))
+MODULE_MODS = $(addsuffix .mod,                   $(MODULE_SRC_BASENAMES))
 
-PROG_SRCS = 2damrhistss.f90 maggrid.f90 mapb2s.f90 \
-            combiner.f90 seedgen.f90 sim3d.f90 shockfront.f90
-#PROG_SRCS += sim3d_em.f90
-PROG_OBJS = $(subst .f90,.o,$(PROG_SRCS))
-PROG_BINS = $(subst .f90,,$(PROG_SRCS))
+PROG_SRC_BASENAMES = 2damrhistss maggrid mapb2s combiner seedgen sim3d shockfront
+#PROG_SRC_BASENAMES += sim3d_em
+PROG_SRCS = $(addprefix src/, $(addsuffix .f90, $(PROG_SRC_BASENAMES)))
+PROG_OBJS = $(addsuffix .o,                     $(PROG_SRC_BASENAMES))
+PROG_BINS = $(addsuffix $(PROGEXT),             $(PROG_SRC_BASENAMES))
 
 .SUFFIXES: .o .for .f .f90 .f95 .f03
 .PHONY: modules executables all clean clean-logs clean-objs
@@ -89,17 +89,19 @@ all: $(MODULE_OBJS) executables
 # these targets create executables
 executables: $(MODULE_OBJS) $(PROG_BINS)
 
-clean:
-	rm -vf $(PROG_BINS) *.o *.mod
+clean: clean-objs clean-modules
+	rm -vf $(PROG_BINS)
 
 clean-logs:
 	rm -vf logs/*.out.txt logs/*.err.txt
 
+clean-modules:
+	rm -vf *.mod
+
 clean-objs:
 	rm -vf *.o
 
-# these targets create modules: object files (.o) and
-# module files (.mod)
+# these targets create modules: object files (.o) and module files (.mod)
 modules: $(MODULE_OBJS) $(MODULE_MODS)
 
 mtrx.o: param.o epv.o dxx.o dmumu.o sim3d_utils.o
