@@ -1,0 +1,24 @@
+name = "SEP-stochastic"
+version = "0.0.1"
+author = "Ming Zhang and contributors"
+
+[[executable]]
+name = 2damrhistss
+
+[[executable]]
+name = maggrid
+
+[[executable]]
+name = mapb2s
+
+[[executable]]
+name = combiner
+
+[[executable]]
+name = seedgen
+
+[[executable]]
+name = sim3d
+
+[[executable]]
+name = shockfront
