@@ -238,10 +238,11 @@ contains
     integer, intent(in)           :: l, m
     real(kind=real64), intent(in) :: x
 
-    integer                       :: i ! iteration variable
-    real(kind=real64)             :: pll, somx2
-    real(kind=real64)             :: pmm ! legendre polynomial of order (m, m)
-    real(kind=real64)             :: pmmp1 ! legendre polynomial of order (m+1, m)
+    integer           :: i     ! iteration variable
+    real(kind=real64) :: pll
+    real(kind=real64) :: somx2 ! square root of 1 - x^2
+    real(kind=real64) :: pmm   ! legendre polynomial of order (m, m)
+    real(kind=real64) :: pmmp1 ! legendre polynomial of order (m+1, m)
 
     if (m < 0 .or. m > l .or. abs(x) > 1.0) then
       print *, 'bad arguments in plgndr'
@@ -280,8 +281,8 @@ contains
   subroutine init_aplm(alp_arr, dalp_arr, d2alp_arr)
     ! populate alp, dalp, d2alp with the associated legendre polynomials,
     ! and its first and second derivatives respectively
-    real(kind=real64), intent(out) :: alp_arr(0:N_THETA,0:NS,0:NS)
-    real(kind=real64), intent(out) :: dalp_arr(0:N_THETA,0:NS,0:NS)
+    real(kind=real64), intent(out) ::   alp_arr(0:N_THETA,0:NS,0:NS)
+    real(kind=real64), intent(out) ::  dalp_arr(0:N_THETA,0:NS,0:NS)
     real(kind=real64), intent(out) :: d2alp_arr(0:N_THETA,0:NS,0:NS)
     integer :: j
     integer :: l, m

@@ -58,8 +58,8 @@ contains
     real(kind=real64)  :: cm1sq, costhetahbv2, dal
     real(kind=real64)  :: dphiskc, drskf, dso, dthetaskc, phic, phiskc, rskf
     real(kind=real64)  :: tauc1, tcme1
-    real(kind=real64)  :: tempsw, thc, theta_skc, tsh
-    real(kind=real64)  :: vthc, vphic, vphic0, vthc0, vskf, vsw0
+    real(kind=real64)  :: tempsw, theta_c, theta_skc, tsh
+    real(kind=real64)  :: vtheta_c, vphic, vphic0, vtheta_c0, vskf, vsw0
     integer :: cme_fileunit, cpm_fileunit, ecme_fileunit
 
     call open_file_from_environment("CME_DATA_FILE", cme_fileunit, "FORMATTED")
@@ -87,7 +87,7 @@ contains
       pska(i,3) = atan2(prm(2), prm(1))
 
       ! transform to HEEQ+60 longitude at map time
-      pska(i,3) = pska(i,3) - (omega-2.0d0*PI/5.256e5)*tska(i) + PI/3
+      pska(i,3) = pska(i,3) - (omega - 2.0d0*PI/5.256e5)*tska(i) + PI/3
       pska(i,4) = (prm(5)+prm(6))/2/6.96340d8
       pska(i,5) = pska(i,4)
       pska(i,6) = prm(7)/6.96340d8
@@ -130,7 +130,7 @@ contains
     if (tauc1 + tska(1) < tska(nsk)) then
       jt = locate(tska, nsk, tauc1 + tska(1))
     else
-      jt = nsk-1
+      jt = nsk - 1
     end if
     drskf = (pska(jt+1,1)+pska(jt+1,6)-pska(1,1)-pska(1,6))/&
       (tska(jt+1)-tska(1))
@@ -153,16 +153,16 @@ contains
     !r1au(2) = theta_skc
 
     !tpsw = ((r1au(1)-k4ok2/r1au(1)-k6ok2/r1au(1)**3/3)
-    !&   -(rc1-k4ok2/rc1-k6ok2/rc1**3/3))/vsw
-    ! r1au(3) = phiskc-omega*tpsw
+    !&   -(rc1 - k4ok2/rc1 - k6ok2/rc1**3/3))/vsw
+    ! r1au(3) = phiskc - omega*tpsw
     ! call drvbmag(r1au, bv, bm, cvtu, gbmag, bxgb2, dbbds, pol, b1s, gb1s)
     ! call solarwind(r1au, vpl, gvpl, densw)
     ! va1au = 187.8*bm/sqrt(densw)
     ! tempsw = solarwindtemp(r1au)
     ! vs1au = 7.83e-6 * sqrt(gamma_cs*tempsw)
     ! ca1 = va1au*r1au(1)/rc1*
-    !&  sqrt((vsw+(rc1-2.)*omega)/(vsw+(r1au(1)-2.)*omega))
-    ! cs1 = vs1au*(r1au(1)/rc1)**(gamma_cs-1)
+    !&  sqrt((vsw+(rc1 - 2.)*omega)/(vsw+(r1au(1)-2.)*omega))
+    ! cs1 = vs1au*(r1au(1)/rc1)**(gamma_cs - 1)
     ! costhetahbv2 = vsw**2/(vsw**2+((r1au(1)-2.)*omega)**2)
     !!=======if using data at rc1 to calculate Va and Vs directly=====
     vsw0 = vsw
@@ -174,28 +174,29 @@ contains
     call solarwind(rc1_3d, vpl, gvpl, densw)
     ca1 = 187.8*bm/sqrt(densw)
     tempsw = solarwindtemp(rc1_3d)
-    cs1 = 7.83e-6*sqrt(gamma_cs*tempsw)
+    cs1 = 7.83e-6 * sqrt(gamma_cs * tempsw)
     ! cm1sq: square of mach number at rc1
     !!magnetosonic speed (Vms): Vms**2 = 0.5 * {Va**2 + Vs**2 + [(Va**2 + Vs**2)**2 -
     !! 4 * Va**2 * Vs**2 * (cos (theta))**2]**0.5}
     costhetahbv2 = vpl(1)**2 / (vpl(1)**2+vpl(2)**2)
-    cm1sq = 2. * (vcme0-vsw)**2 / (ca1**2+cs1**2+&
+    cm1sq = 2. * (vcme0-vsw)**2 / (ca1**2 + cs1**2 + &
       sqrt((ca1**2 + cs1**2)**2 - 4 * ca1**2 * cs1**2 * costhetahbv2))
     r1au(1) = 215.032
-    dso = 0.264*r1au(1)*((gamma_cs-1)*cm1sq+2)/((gamma_cs+1)*(cm1sq-1))*&
-      (rc1/r1au(1))**0.78 !standoff distance
+    dso = 0.264 * r1au(1) * &
+      ((gamma_cs - 1) * cm1sq + 2) / ((gamma_cs + 1) * (cm1sq - 1)) * &
+      (rc1 / r1au(1))**0.78 !standoff distance
 
     rc1sh_3d(1) = rc1+dso/2!sheath position at CME leading edge critical time
     rc1sh_3d(2) = theta_skc
     tpsw1 = ((rc1sh_3d(1)-k4ok2/rc1sh_3d(1)-k6ok2/rc1sh_3d(1)**3/3)&
-      -(rc1-k4ok2/rc1-k6ok2/rc1**3/3))/vsw
-    rc1sh_3d(3) = phiskc-omega*tpsw1
+      -(rc1 - k4ok2/rc1 - k6ok2/rc1**3/3))/vsw
+    rc1sh_3d(3) = phiskc - omega*tpsw1
     call drvbmag(rc1sh_3d, bv, bm, cvtu, gbmag, bxgb2, dbbds, pol, b1s, gb1s)
     call solarwind(rc1sh_3d, vpl, gvpl, densw)
     ca2 = 187.8*bm/sqrt(densw)
     tempsw = solarwindtemp(rc1sh_3d)
     cs2 = 7.83e-6*sqrt(gamma_cs*tempsw)! bm densw tempsw from model (or observation)
-    !cm1sq = (vcme0-vsw)**2/cs2**2
+    !cm1sq = (vcme0 - vsw)**2/cs2**2
 
     tauc2 = dso/sqrt(ca2**2+cs2**2)+tauc1 !min !critical time for CME shock front
     tauc2_0 = tauc2 + tska(1)
@@ -211,7 +212,7 @@ contains
     write(cpm_fileunit,'(A)')'rc1:position at critical time of CME leading edge'
     write(cpm_fileunit,'(A)')'dso(RS): standoff distance'
     write(cpm_fileunit,'(A)')'ca1,cs1(Rs/min): Alfven and sound speed at rc1 '
-    write(cpm_fileunit,'(A)')'ca2,cs2(Rs/min): Alfven and sound speed at the &
+    write(cpm_fileunit,'(A)')'ca2,cs2(Rs/min): Alfven and sound speed at the
       & shealth rc1+dso/2'
     write(cpm_fileunit,'(A)')'=============================================='
     write(cpm_fileunit,'(A)')'Calculated variables:'
@@ -221,8 +222,8 @@ contains
     write(cpm_fileunit,'(A,F5.1)')'dso(Rs)=',dso
     write(cpm_fileunit,'(3(A,F15.1,2x))') &
       'tcme0=',tcme0,', tauc1_0=',tauc1_0,', tauc2_0=',tauc2_0
-    write(cpm_fileunit,'(4(A,F8.4,2x))')'CA1=',&
-      ca1,',CS1=',cs1,',CA2=',ca2,',CS2=',cs2
+    write(cpm_fileunit,'(4(A,F8.4,2x))')'CA1=',ca1,',CS1=',cs1,&
+      ',CA2=',ca2,',CS2=',cs2
     write(cpm_fileunit,'(A,F5.1)')'Mach number at rc1=', sqrt(cm1sq)
     write(cpm_fileunit,'(A,F7.2)')'Half Angle at 21.5 Rs= ', hwinf*57.29578
     write(cpm_fileunit,'(A)')'=============================================='
@@ -270,15 +271,15 @@ contains
 
     do while (rskf < 215.032)
       if (tauc2_0 > tska(nsk)) then
-        rskf = 3.0/2.0*(vcme0-vsw0)*tauc2*(((tsh1-tska(1))/tauc2)&
-          **(2.0/3.0)-1.0d0) + vsw0*tauc2*(((tsh1-tska(1))/tauc2)-1.0d0)&
-          + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0-tska(nsk)) !LC
+        rskf = 3.0/2.0*(vcme0 - vsw0)*tauc2*(((tsh1 - tska(1))/tauc2)&
+          **(2.0/3.0)-1.0d0) + vsw0*tauc2*(((tsh1 - tska(1))/tauc2)-1.0d0)&
+          + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0 - tska(nsk)) !LC
       else
-        rskf = 3.0/2.0*(vcme0-vsw0)*tauc2*(((tsh1-tska(1))/tauc2)**(2.0/3.0&
-          )-((tska(nsk)-tska(1))/tauc2)**(2.0/3.0))+vsw0*(tsh1-tska(nsk))&
+        rskf = 3.0/2.0*(vcme0 - vsw0)*tauc2*(((tsh1 - tska(1))/tauc2)**(2.0/3.0&
+          )-((tska(nsk)-tska(1))/tauc2)**(2.0/3.0))+vsw0*(tsh1 - tska(nsk))&
           + pska(nsk,1)+pska(nsk,6)
       end if
-      vskf = (vcme0-vsw0) * (((tsh1-tska(1))/tauc2)**(-1.0d0/3.0d0)) + vsw0
+      vskf = (vcme0 - vsw0) * (((tsh1 - tska(1))/tauc2)**(-1.0d0/3.0d0)) + vsw0
       tsh1 = tsh1+0.5
     end do
     write(cpm_fileunit,'(A,4F8.1)')'t1au(min),vcme0,vskf1au,vsw0(km/s)=', &
@@ -293,15 +294,15 @@ contains
     !  Use the propagation model to calculate the radial, lat and long
     !  motion and save to an array up to 3days
     pexsk(0,:) = pska(nsk,:)
-    thc = pexsk(0,2)
+    theta_c = pexsk(0,2)
     phic = 0.0 !relative to pska(nsk,3)
     dthetaskc = (pska(nsk,2)-pska(1,2)) / (tska(nsk)-tska(1))
     dphiskc = pska(nsk,3) - pska(nsk-1,3)
     if (dphiskc >  PI) dphiskc = dphiskc - TWOPI
     if (dphiskc < -PI) dphiskc = dphiskc + TWOPI
     dphiskc = dphiskc / (tska(nsk)-tska(nsk-1))
-    vthc0 = (pska(nsk,1)+pska(nsk,6)) * dthetaskc
-    vphic0 = (pska(nsk,1)+pska(nsk,6)) * (dphiskc+omega) * sin(thc)
+    vtheta_c0 = (pska(nsk,1)+pska(nsk,6)) * dthetaskc
+    vphic0 = (pska(nsk,1)+pska(nsk,6)) * (dphiskc+omega) * sin(theta_c)
     ! limiting shock size to hwinf (after 21.5 Rs)
     !    hwinf = pska(nsk,6) * sin(alinf) / (pska(nsk,6)*cos(alinf)+pska(nsk,1))
     alinf = hwinf
@@ -314,32 +315,32 @@ contains
     do i = 1, 43200
       tsh1 = tska(nsk) + 0.1*i
       if (tsh1 < tauc2_0) then
-        rskf = pska(nsk,1)+pska(nsk,6)+vcme0*(tsh1-tska(nsk))
+        rskf = pska(nsk,1)+pska(nsk,6)+vcme0*(tsh1 - tska(nsk))
       else
         if (tauc2_0 > tska(nsk)) then
-          rskf = 3.0/2.0*(vcme0-vsw0)*tauc2*(((tsh1-tska(1))/tauc2)&
-            **(2.0/3.0)-1.0d0) + vsw0*tauc2*(((tsh1-tska(1))/tauc2)-1.0d0)&
-            + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0-tska(nsk)) !LC
+          rskf = 3.0/2.0*(vcme0 - vsw0)*tauc2*(((tsh1 - tska(1))/tauc2)&
+            **(2.0/3.0)-1.0d0) + vsw0*tauc2*(((tsh1 - tska(1))/tauc2)-1.0d0)&
+            + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0 - tska(nsk)) !LC
         else
-          rskf = 3.0/2.0*(vcme0-vsw0)*tauc2*(((tsh1-tska(1))/tauc2)**(2.0/3.0&
-            )-((tska(nsk)-tska(1))/tauc2)**(2.0/3.0))+vsw0*(tsh-tska(nsk))&
+          rskf = 3.0/2.0*(vcme0 - vsw0)*tauc2*(((tsh1 - tska(1))/tauc2)**(2.0/3.0&
+            )-((tska(nsk)-tska(1))/tauc2)**(2.0/3.0))+vsw0*(tsh - tska(nsk))&
             + pska(nsk,1)+pska(nsk,6)
         end if
       end if
       if (tsh1 < tauc2_0) then
-        vthc = vthc0
+        vtheta_c = vtheta_c0
         vphic = vphic0
       else
-        vthc = (vthc0-0)*((tsh1-tska(1))/tauc2)**(-1.0/3.0)
-        vphic = (vphic0-0)*((tsh1-tska(1))/tauc2)**(-1.0/3.0)
+        vtheta_c  = vtheta_c0  * ((tsh1-tska(1))/tauc2)**(-1.0/3.0)
+        vphic = vphic0 * ((tsh1-tska(1))/tauc2)**(-1.0/3.0)
       end if
-      thc = thc+vthc/rskf*0.1  !integration time step is 0.1 min
-      phic = phic+vphic/rskf/sin(thc)*0.1 !fixed frame
+      theta_c = theta_c+vtheta_c/rskf*0.1  !integration time step is 0.1 min
+      phic = phic+vphic/rskf/sin(theta_c)*0.1 !fixed frame
       if (mod(i,300) == 0) then
         ii = i/300
         pexsk(ii,1) = pska(nsk,1)/(pska(nsk,1)+pska(nsk,6))*rskf
-        pexsk(ii,2) = thc
-        pexsk(ii,3) = phic+pska(nsk,3)-omega*(tsh1-tska(nsk))
+        pexsk(ii,2) = theta_c
+        pexsk(ii,3) = phic+pska(nsk,3) - omega*(tsh1-tska(nsk))
         pexsk(ii,4) = pska(nsk,4)/(pska(nsk,1)+pska(nsk,6))*rskf
         pexsk(ii,5) = pska(nsk,5)/(pska(nsk,1)+pska(nsk,6))*rskf
         pexsk(ii,6) = pska(nsk,6)/(pska(nsk,1)+pska(nsk,6))*rskf
@@ -352,7 +353,7 @@ contains
       end if
     end do
     do ii = 1,jj
-      pexsk(ii,8) = pexsk(0,8) + (alinf-pexsk(0,8))/jj*ii
+      pexsk(ii,8) = pexsk(0,8) + (alinf - pexsk(0,8))/jj*ii
     end do
 
     call open_file_from_environment(&
@@ -410,41 +411,41 @@ contains
       if (jt == 0) jt = 1
       !  maximum shock radial distance for quick search
       drskc = (pska(jt+1,1)-pska(jt,1))/(tska(jt+1)-tska(jt))
-      rskc = pska(jt,1)+(tsh-tska(jt))*drskc
+      rskc = pska(jt,1)+(tsh - tska(jt))*drskc
       dask(3) = (pska(jt+1,6)-pska(jt,6))/(tska(jt+1)-tska(jt))
-      ask(3) = pska(jt,6)+(tsh-tska(jt))*dask(3)
+      ask(3) = pska(jt,6)+(tsh - tska(jt))*dask(3)
       !vskf = vskf0 !only for fort.58; useless
       !rskf = pska(jt,1)+pska(jt,6)!only for fort.58; useless
       dthetaskc = (pska(jt+1,2)-pska(jt,2))/(tska(jt+1)-tska(jt))
-      theta_skc = pska(jt,2)+(tsh-tska(jt))*dthetaskc
+      theta_skc = pska(jt,2)+(tsh - tska(jt))*dthetaskc
       dphiskc = (pska(jt+1,3)-pska(jt,3))
       if (dphiskc >  PI) dphiskc = dphiskc - TWOPI
       if (dphiskc < -PI) dphiskc = dphiskc + TWOPI
       dphiskc = dphiskc / (tska(jt+1) - tska(jt))
-      phiskc = pska(jt,3) + (tsh-tska(jt)) * dphiskc
+      phiskc = pska(jt,3) + (tsh - tska(jt)) * dphiskc
     else
-      jt = nsk-1
+      jt = nsk - 1
       vcme0 = vskf0
       if (tsh < tauc2_0) then
-        rskf = pska(nsk,1)+pska(nsk,6)+vcme0*(tsh-tska(nsk)) !LC
+        rskf = pska(nsk,1)+pska(nsk,6)+vcme0*(tsh - tska(nsk)) !LC
         vskf = vcme0
       else
         if (tauc2_0>tska(nsk)) then
-          rskf = 3.0/2.0 * (vcme0-vsw)*tauc2*(((tsh-tska(1))/tauc2)**(2.0/3.0)&
-            -1.0d0)+vsw*tauc2*(((tsh-tska(1))/tauc2)-1.0d0)&
-            + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0-tska(nsk)) !LC
+          rskf = 3.0/2.0 * (vcme0 - vsw)*tauc2*(((tsh - tska(1))/tauc2)**(2.0/3.0)&
+            -1.0d0)+vsw*tauc2*(((tsh - tska(1))/tauc2)-1.0d0)&
+            + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0 - tska(nsk)) !LC
         else
-          rskf = 3.0/2.0 * (vcme0-vsw)*tauc2*(((tsh-tska(1))/tauc2)**(2.0/3.0)&
-            -((tska(nsk)-tska(1))/tauc2)**(2.0/3.0)) + vsw*(tsh-tska(nsk))&
+          rskf = 3.0/2.0 * (vcme0 - vsw)*tauc2*(((tsh - tska(1))/tauc2)**(2.0/3.0)&
+            -((tska(nsk)-tska(1))/tauc2)**(2.0/3.0)) + vsw*(tsh - tska(nsk))&
             + pska(nsk,1)+pska(nsk,6)
         end if
-        vskf = (vcme0-vsw) * (((tsh-tska(1))/tauc2)**(-1.0d0/3.0d0)) + vsw
+        vskf = (vcme0 - vsw) * (((tsh - tska(1))/tauc2)**(-1.0d0/3.0d0)) + vsw
       end if
 
       rhclf = pska(nsk,6) / (pska(nsk,1) + pska(nsk,6))
-      rskc = (1-rhclf) * rskf
-      drskc = (1-rhclf) * vskf
-      if ((pska(nsk,1) - pska(nsk-1,1)) < 1.e-3) then
+      rskc = (1 - rhclf) * rskf
+      drskc = (1 - rhclf) * vskf
+      if ((pska(nsk,1) - pska(nsk - 1,1)) < 1.e-3) then
         drskc = 0.0
         rskc = pska(nsk,1)
       end if
@@ -466,32 +467,32 @@ contains
 
     if (tsh < tska(nsk)) then
       dthetaskc = (pska(jt+1,2)-pska(jt,2)) / (tska(jt+1)-tska(jt))
-      theta_skc = pska(jt,2)+(tsh-tska(jt))*dthetaskc
+      theta_skc = pska(jt,2)+(tsh - tska(jt))*dthetaskc
       dphiskc = pska(jt+1,3) - pska(jt,3)
       if (dphiskc >  PI) dphiskc = dphiskc - TWOPI
       if (dphiskc < -PI) dphiskc = dphiskc + TWOPI
-      dphiskc = dphiskc/(tska(jt+1)-tska(jt))
-      phiskc = pska(jt,3)+(tsh-tska(jt))*dphiskc
-      dgmsk = (pska(jt+1,7)-pska(jt,7))/(tska(jt+1)-tska(jt))
-      gmsk = pska(jt,7)+(tsh-tska(jt))*dgmsk
-      dask(1) = (pska(jt+1,4)-pska(jt,4))/(tska(jt+1)-tska(jt))
-      ask(1) = pska(jt,4)+(tsh-tska(jt))*dask(1)
-      dask(2) = (pska(jt+1,5)-pska(jt,5))/(tska(jt+1)-tska(jt))
-      ask(2) = pska(jt,5)+(tsh-tska(jt))*dask(2)
+      dphiskc  = dphiskc/(tska(jt+1)-tska(jt))
+      phiskc   = pska(jt,3) + (tsh -tska(jt))*dphiskc
+      dgmsk    = (pska(jt+1,7)-pska(jt,7))/(tska(jt+1)-tska(jt))
+      gmsk     = pska(jt,7) + (tsh - tska(jt))*dgmsk
+      dask(1)  = (pska(jt+1,4)-pska(jt,4))/(tska(jt+1)-tska(jt))
+      ask(1)   = pska(jt,4) + (tsh - tska(jt))*dask(1)
+      dask(2)  = (pska(jt+1,5)-pska(jt,5))/(tska(jt+1)-tska(jt))
+      ask(2)   = pska(jt,5)+(tsh - tska(jt))*dask(2)
       dtzskmin = (pska(jt+1,8)-pska(jt,8)) / (tska(jt+1)-tska(jt))
-      tzskmin = pska(jt,8)+(tsh-tska(jt))*dtzskmin
+      tzskmin  = pska(jt,8)+(tsh - tska(jt))*dtzskmin
     else
       tsh1 = tsh - tska(nsk)
       jt1 = floor(tsh1/30)
       dthetaskc = (pexsk(jt1+1,2)-pexsk(jt1,2))/30
-      theta_skc = pexsk(jt1,2)+(tsh1-30*jt1)*dthetaskc
+      theta_skc = pexsk(jt1,2)+(tsh1 - 30*jt1)*dthetaskc
       dphiskc = pexsk(jt1+1,3)-pexsk(jt1,3)
       if (dphiskc >  PI) dphiskc = dphiskc - TWOPI
       if (dphiskc < -PI) dphiskc = dphiskc + TWOPI
       dphiskc = dphiskc / 30
-      phiskc = pexsk(jt1,3) + (tsh1-30*jt1) * dphiskc
+      phiskc = pexsk(jt1,3) + (tsh1 - 30*jt1) * dphiskc
       dgmsk = (pexsk(jt1+1,7)-pexsk(jt1,7)) / 30
-      gmsk = pexsk(jt1,7) + (tsh1-30*jt1)*dgmsk
+      gmsk = pexsk(jt1,7) + (tsh1 - 30*jt1)*dgmsk
       rac = pska(nsk,4) / pska(nsk,6)
       ask(1) = rhclf * rskf * rac
       dask(1) = rhclf * vskf * rac
@@ -499,7 +500,7 @@ contains
       ask(2) = rhclf * rskf * rbc
       dask(2) = rhclf * vskf * rbc
       dtzskmin = (pexsk(jt1+1,8)-pexsk(jt1,8)) / 30
-      tzskmin = pexsk(jt1,8) + (tsh1-30*jt1) * dtzskmin
+      tzskmin = pexsk(jt1,8) + (tsh1 - 30*jt1) * dtzskmin
     end if
     tzskmin = cos(tzskmin)
 
@@ -535,7 +536,7 @@ contains
     grf2(1:3) = grf1(1:3) / ask(1:3)
     grf3(1:3) = grf1(1:3) * grf1(1:3)
     grf2m = norm2(grf2(1:3))
-    dnsk = (rho-1) / grf2m
+    dnsk = (rho - 1) / grf2m
 
     if (dnsk0*dnsk < 0.) then ! crossed shock
       if (grf1(3) < tzskmin) then !No shock on the backside
@@ -544,7 +545,7 @@ contains
         return
       end if
       !   shock normal
-      vnxp = grf2/grf2m
+      vnxp = grf2 / grf2m
       vnx = matmul(xp2x, vnxp)
       !  calculate shock velocity (normal)
       dr2xsk = dmrtx(sinthetask, costhetask, sinphisk, cosphisk, dthetaskc, dphiskc)
