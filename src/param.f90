@@ -12,8 +12,8 @@ module param
   real(kind=real64), parameter :: &
     CSPEED = 25.8441774d0, &    ! speed of light in R_sun/min
     QoMSI = 9.57883376d7, &     ! proton charge-to-mass ratio in coulomb/kg
-    EP = 0.938d0, &             ! proton rest energy in GeV (mass in GeV/c^2)
-    EE = 0.510998918d-3, &      ! electron rest energy in GeV/c^2 (mass in GeV/c^2)
+    EP = 0.938d0, &             ! proton rest energy in GeV
+    EE = 0.510998918d-3, &      ! electron rest energy in GeV
     GAMMA_CS = 1.6666666666666666666d0 ! heat capacity ratio
 
   ! program parameters
