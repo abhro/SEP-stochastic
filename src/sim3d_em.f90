@@ -7,8 +7,8 @@ program sim3d_em
   !  pitch angle diffusion (symmetric D_{\mu\mu})
   !  perpendicular diffusion added
   use datetime_utils, only: caldate
-  use param, only: PI, NSPMAX, NFMAX, nseedmax, nnds, nfl, nsts, &
-                   bgrid, gbgrid, epsilon
+  use param, only: PI, NSPMAX, NFMAX, nseedmax, bgrid, gbgrid, epsilon
+  !use param, only: nnds, nfl, nsts
   use cme_cross, only: inorout, preparecme
   use sim3d_utils, only: f0mod, compress, solarwindtemp, split
   use epv, only: rp2e, e2p
@@ -241,9 +241,12 @@ contains
     real*8            :: tempds, vthds
 
     r(1:3) = rp0(1:3)
+
+    ! Convert spherical coordinates to Cartesian
     xpk(1) = r(1) * dsin(r(2)) * dcos(r(3))
     xpk(2) = r(1) * dsin(r(2)) * dsin(r(3))
     xpk(3) = r(1) * dcos(r(2))
+
     p0 = rp0(4)
     pa0 = rp0(5)
     p = p0
@@ -293,8 +296,8 @@ contains
       !  use EM scheme
       dw(1) = gasdev(iseed)
       dxpk = dxpkdt*dt
-      dxpk(5) = dxpk(5)+sqrt(2*du)*dw(1)*srdt
-      xpk = xpk+dxpk
+      dxpk(5) = dxpk(5) + sqrt(2*du) * dw(1) * srdt
+      xpk = xpk + dxpk
       if (xpk(5) > 1.0) xpk(5) = 0.99999
       if (xpk(5) < -1.0) xpk(5) = -0.99999
 
@@ -309,14 +312,17 @@ contains
 
       t = t + dt
       n = n + 1
-      !   change the position to spheric coordinates
+
+      ! Convert Cartesian coordinates to spherical coordinates
       r(1) = norm2(xpk(1:3))
       r(2) = dacos(xpk(3)/r(1))
       r(3) = datan2(xpk(2),xpk(1))
+
       !  sum source
       tsh = t0org - t
       !call inorout(tsh, xpk, ino, dnsk, vsk, vnx)
       call inorout(tsh, xpk, dnsk, vsk, vnx)
+
       if (b1s > 0 .and. dnsk > 0) then
         bm = norm2(bv0(1:3))
         call mrtx(sin(r(2)), cos(r(2)), sin(r(3)), cos(r(3)), r2x)
@@ -393,6 +399,6 @@ contains
     rpb(1:3) = r(1:3)
     rpb(4:5) = xpk(4:5)
     ck = xpk(6)
-  end subroutine
+  end subroutine walk3d
 
 end program

@@ -121,7 +121,7 @@ contains
     ihour = int(hour)
     min = (hour - float(ihour)) * 60.0
     imin = int(min)
-    isec = (min-imin)*60.0
+    isec = (min-imin) * 60.0
 
     !write(dchar,"(a3,i3,i5)") mchar(month), iday, iyear
     !write(tchar,"(i2.2,':',i2.2,':',i2.2)") ihour, imin, isec
@@ -161,9 +161,6 @@ contains
     integer, parameter  :: WGREG = 2, BGREG = 274277, CGREG = -38
 
     integer             :: iday, month, iyear, iyday
-
-    integer             :: ja, jb, jc, jd, je
-    integer             :: jalpha
 
     integer :: f, e, g, h
 

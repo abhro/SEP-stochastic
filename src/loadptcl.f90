@@ -69,7 +69,7 @@ contains
   !  real(kind=real64) :: p2, beta2
   !  real(kind=real64) :: tanp, sqr1p, dl
   !  real(kind=real64) :: bm, dbbds, b1s, gb1s(3)
-  !  real(kind=real64) :: et1, rlmbd1, rd, pa2, bm2
+  !  real(kind=real64) :: et1, rlambda1, rd, pa2, bm2
   !  ! set up parameters in f0mod to adjust artificial drift
   !  !  gp: order of pitch-angle anisotropy (typically arround 1.0)
   !  !  sp: inverse of pitch-angle anisotropy amplitude (>1.0)
@@ -92,17 +92,16 @@ contains
 
   !  !  estimate the radial diffusion
   !  et1 = rp2e(p2)
-  !  rlmbd1 = get_rlambda0(et1)
-  !  rd = sqrt(1.5*t0*rlmbd1*beta2*CSPEED/3.)
+  !  rlambda1 = get_rlambda0(et1)
+  !  rd = sqrt(1.5 * t0 * rlambda1 * beta2 * CSPEED/3.)
 
   !  !  perpendicular diffusion at half rd
   !  r2(1) = rd
   !  r2(2) = r(2)
   !  r2(3) = r(3)
-  !  pa2=rp0(5)
+  !  pa2 = rp0(5)
   !  call drvbmag(r, bv, bm2, cvtu, gbmag, bxgb2, dbbds, pol, b1s, gb1s)
-  !  call cofm(r2, p2, pa2, beta2, bv, bm2, cvtu, gbmag, dbbds,&
-  !            b1s, gb1s, g2, dg2)
+  !  call cofm(r2, p2, pa2, beta2, bv, bm2, cvtu, gbmag, dbbds, b1s, gb1s, g2, dg2)
   !  !  estimate angular radius of perpendicular diffusion
   !  ap = sqrt(1.5*t0*g2(2)/(rd)**2)
   !  tanp = abs(bv(3)/bv(1))

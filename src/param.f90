@@ -5,9 +5,7 @@ module param
 
   ! physical constants
 
-  real(kind=real64), parameter :: &
-    PI = 3.14159265358979323846d0, &
-    TWOPI = 2.d0*PI
+  real(kind=real64), parameter :: PI = 3.14159265358979323846d0, TWOPI = 2.d0*PI
 
   real(kind=real64), parameter :: &
     CSPEED = 25.8441774d0, &    ! speed of light in R_sun/min

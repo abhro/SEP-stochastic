@@ -282,9 +282,8 @@ contains
       vskf = (vcme0 - vsw0) * (((tsh1 - tska(1))/tauc2)**(-1.0d0/3.0d0)) + vsw0
       tsh1 = tsh1+0.5
     end do
-    write(cpm_fileunit,'(A,4F8.1)')'t1au(min),vcme0,vskf1au,vsw0(km/s)=', &
-      tsh1, vcme0kmPs, vskf*RS_PER_MIN_TO_KM_PER_SEC, &
-      vsw0*RS_PER_MIN_TO_KM_PER_SEC
+    write(cpm_fileunit,'(A,4F8.1)') 't1au(min),vcme0,vskf1au,vsw0(km/s)=', &
+      tsh1, vcme0kmPs, vskf*RS_PER_MIN_TO_KM_PER_SEC, vsw0*RS_PER_MIN_TO_KM_PER_SEC
 
     !call flush(cpm_fileunit)
     flush(cpm_fileunit)
@@ -320,7 +319,7 @@ contains
         if (tauc2_0 > tska(nsk)) then
           rskf = 3.0/2.0*(vcme0 - vsw0)*tauc2*(((tsh1 - tska(1))/tauc2)&
             **(2.0/3.0)-1.0d0) + vsw0*tauc2*(((tsh1 - tska(1))/tauc2)-1.0d0)&
-            + pska(nsk,1)+pska(nsk,6)+vcme0*(tauc2_0 - tska(nsk)) !LC
+            + pska(nsk,1) + pska(nsk,6)+vcme0*(tauc2_0 - tska(nsk)) !LC
         else
           rskf = 3.0/2.0*(vcme0 - vsw0)*tauc2*(((tsh1 - tska(1))/tauc2)**(2.0/3.0&
             )-((tska(nsk)-tska(1))/tauc2)**(2.0/3.0))+vsw0*(tsh - tska(nsk))&
@@ -478,15 +477,15 @@ contains
       dask(1)  = (pska(jt+1,4)-pska(jt,4))/(tska(jt+1)-tska(jt))
       ask(1)   = pska(jt,4) + (tsh - tska(jt))*dask(1)
       dask(2)  = (pska(jt+1,5)-pska(jt,5))/(tska(jt+1)-tska(jt))
-      ask(2)   = pska(jt,5)+(tsh - tska(jt))*dask(2)
+      ask(2)   = pska(jt,5) + (tsh - tska(jt))*dask(2)
       dtzskmin = (pska(jt+1,8)-pska(jt,8)) / (tska(jt+1)-tska(jt))
-      tzskmin  = pska(jt,8)+(tsh - tska(jt))*dtzskmin
+      tzskmin  = pska(jt,8) + (tsh - tska(jt))*dtzskmin
     else
       tsh1 = tsh - tska(nsk)
       jt1 = floor(tsh1/30)
       dthetaskc = (pexsk(jt1+1,2)-pexsk(jt1,2))/30
-      theta_skc = pexsk(jt1,2)+(tsh1 - 30*jt1)*dthetaskc
-      dphiskc = pexsk(jt1+1,3)-pexsk(jt1,3)
+      theta_skc = pexsk(jt1,2) + (tsh1 - 30*jt1) * dthetaskc
+      dphiskc = pexsk(jt1+1,3) - pexsk(jt1,3)
       if (dphiskc >  PI) dphiskc = dphiskc - TWOPI
       if (dphiskc < -PI) dphiskc = dphiskc + TWOPI
       dphiskc = dphiskc / 30
@@ -523,15 +522,16 @@ contains
           r2xsk(i,3)*xp2r(3,1:3)
     end do
 
+    ! Convert spherical coordinates to Cartesian
     xskc(1) = rskc * sinthetask * cosphisk
     xskc(2) = rskc * sinthetask * sinphisk
     xskc(3) = rskc * costhetask
 
     xc(1:3) = x(1:3) - xskc(1:3)
-    xpc(1:3) = xc(1)*xp2x(1,1:3)+xc(2)*xp2x(2,1:3)+xc(3)*xp2x(3,1:3)
+    xpc(1:3) = xc(1)*xp2x(1,1:3) + xc(2)*xp2x(2,1:3) + xc(3)*xp2x(3,1:3)
 
     !  distance to the shock
-    grf1(1:3) = xpc(1:3)/ask(1:3)
+    grf1(1:3) = xpc(1:3) / ask(1:3)
     rho = norm2(grf1(1:3))
     grf2(1:3) = grf1(1:3) / ask(1:3)
     grf3(1:3) = grf1(1:3) * grf1(1:3)
@@ -559,11 +559,11 @@ contains
       dot1 = dot_product(grf2, vnxp)
       dot2 = dot_product(grf3, dask(:)/ask(:))
       dxskc(1) = drskc * sinthetask * cosphisk &
-               + rskc * costhetask * dthetaskc * cosphisk &
-               - rskc * sinthetask * sinphisk * dphiskc
+               +  rskc * costhetask * dthetaskc * cosphisk &
+               -  rskc * sinthetask * sinphisk * dphiskc
       dxskc(2) = drskc * sinthetask * sinphisk &
-               + rskc * costhetask * dthetaskc * sinphisk &
-               + rskc * sinthetask * cosphisk * dphiskc
+               +  rskc * costhetask * dthetaskc * sinphisk &
+               +  rskc * sinthetask * cosphisk * dphiskc
       dxskc(3) = drskc * costhetask - rskc * sinthetask * dthetaskc
       do i = 1, 3
         dxpskc(i) = dot_product(dxskc, xp2x(:,i))

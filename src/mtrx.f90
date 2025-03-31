@@ -17,6 +17,24 @@ contains
     norm2 = sqrt(sum(arr * arr))
   end function norm2
 
+  function cartesian2spherical(x) result(r)
+    real(kind=real64), intent(in) :: x(3)
+    real(kind=real64), intent(out) :: r(3)
+
+    r(1) = norm2(x)
+    r(2) = acos(x(3) / r(1))  ! acos(z/r)
+    r(3) = atan2(x(2), x(1))  ! atan(y/x)
+  end function
+
+  function spherical2cartesian(r) result(x)
+    real(kind=real64), intent(in) :: r(3)
+    real(kind=real64), intent(out) :: x(3)
+
+    cartesian(1) = r(1) * sin(r(2)) * cos(r(3)) ! r sin(theta) cos(phi)
+    cartesian(2) = r(1) * sin(r(2)) * sin(r(3)) ! r sin(theta) sin(phi)
+    cartesian(3) = r(1) * cos(r(2))             ! r cos(theta)
+  end function
+
 
   function mxptr(gm) result(xptr)
     !  calculate matrix for xyz' ellipsoid coordinate Kwon to spheric

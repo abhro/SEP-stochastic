@@ -197,9 +197,12 @@ program sim3d
     pa0 = rp0(5)
     call f0mod(r0, pa0, h0, df0, ddf0, df0dmu, ddf0dmu2)
     call drvbmag(r0, bv0, bm, cvtu, gbmag, bxgb2, dbbds, pol, b1s, gb1s)
+
+    ! Convert spherical coordinates to Cartesian
     x0(1) = r0(1) * sin(r0(2)) * cos(r0(3))
     x0(2) = r0(1) * sin(r0(2)) * sin(r0(3))
     x0(3) = r0(1) * cos(r0(2))
+
     call inorout(t0org, x0, dnsk00, vsk, vnx)
     print *, __FILE__, ":", __LINE__, ":", "Finished calling inorout"
 

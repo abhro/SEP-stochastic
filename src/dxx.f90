@@ -19,7 +19,6 @@ contains
     real(kind=real64), intent(in)  :: r(3), bv(3), cvtu(3), gbm(3), gb1s(3)
     real(kind=real64), intent(out) :: g(3), dg(3)
     real(kind=real64)              :: ggper(3), dbb(3)
-    real(kind=real64)              :: r1rs(3), cvtu1s(3), gbm1s(3), bxgb21s(3)
     real(kind=real64)              :: ab1s, vpl, dvpl, bdotggper
 
     real(kind=real64)              :: g0(3), b(3), a(3)
@@ -142,7 +141,6 @@ contains
 
     real(kind=real64)              :: rp, beta, v, bm
     real(kind=real64)              :: ddd, dmu, rmu, du, ddu, dmumu0
-    real(kind=real64)              :: re(3), bve(3)
 
     integer                        :: ndmumu
     common/ndmumu/ndmumu
@@ -169,9 +167,8 @@ contains
 
   real(kind=real64) function get_rlambdax0(e0)
     real(kind=real64), intent(in) :: e0
-    real(kind=real64)             :: re(3), bve(3)
-    real(kind=real64)             :: bv(3), cvtu(3), gbm(3), gb1s(3), g(3), dg(3)
-    real(kind=real64)             :: rp, beta, v, bm, pa, p, dbbds, b1s
+    real(kind=real64) :: re(3), bv(3), cvtu(3), gbm(3), gb1s(3), g(3), dg(3)
+    real(kind=real64) :: rp, beta, v, bm, pa, p, dbbds, b1s
     rp = e2p(e0)
     beta = rp2beta(rp)
     v = beta * CSPEED
@@ -184,18 +181,17 @@ contains
 
   real(kind=real64) function get_rlambday0(e0)
     real(kind=real64), intent(in)  :: e0
-    real(kind=real64)              :: re(3), bve(3)
-    real(kind=real64)              :: bv(3), cvtu(3), gbm(3), gb1s(3), g(3), dg(3)
-    real(kind=real64)              :: rp, beta, v, bm, pa
-    real(kind=real64)              :: p, dbbds, b1s
+    real(kind=real64) :: re(3), bv(3), cvtu(3), gbm(3), gb1s(3), g(3), dg(3)
+    real(kind=real64) :: rp, beta, v, bm, pa
+    real(kind=real64) :: p, dbbds, b1s
     rp = e2p(e0)
     beta = rp2beta(rp)
     v = beta*CSPEED
     bm = 1.0
     pa = 0.5
 
-    call cofm(re,p,pa,beta,bv,bm,cvtu,gbm,dbbds,b1s,gb1s,g,dg)
-    get_rlambday0 = 3. * g(3) / v
+    call cofm(re, p, pa, beta, bv, bm, cvtu, gbm, dbbds, b1s, gb1s, g, dg)
+    get_rlambday0 = 3.0 * g(3) / v
   end function
 
   subroutine set_rlambda(e0)
