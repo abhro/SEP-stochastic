@@ -3,22 +3,22 @@ version = "0.0.1"
 author = "Ming Zhang and contributors"
 
 [[executable]]
-name = 2damrhistss
+name = "2damrhistss"
 
 [[executable]]
-name = maggrid
+name = "maggrid"
 
 [[executable]]
-name = mapb2s
+name = "mapb2s"
 
 [[executable]]
-name = combiner
+name = "combiner"
 
 [[executable]]
-name = seedgen
+name = "seedgen"
 
 [[executable]]
-name = sim3d
+name = "sim3d"
 
 [[executable]]
-name = shockfront
+name = "shockfront"

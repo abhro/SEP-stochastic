@@ -1,0 +1,22 @@
+project:             SEP-Stochastic
+summary:             TODO
+version:             0.0.0
+author:              Ming Zhang and contributors
+src_dir:             ./src
+exclude_dir:         ./test
+                     ./logo
+md_base_dir:         ./
+output_dir:          ./doc
+source:              true
+incl_src:            true
+graph:               true
+coloured_edges:      true
+search:              true
+print_creation_date: true
+creation_date:       %Y-%m-%d %H:%M %z
+sort:                permission-alpha
+display:             public
+                     private
+                     protected
+
+{!README.md!}
