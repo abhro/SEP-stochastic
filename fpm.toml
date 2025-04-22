@@ -22,3 +22,14 @@ name = "sim3d"
 
 [[executable]]
 name = "shockfront"
+
+[extras.ford]
+project = "SEP-Stochastic"
+summary = "TODO"
+version = "0.0.0"
+author = "Ming Zhang and contributors"
+source = false
+incl_src = false
+print_creation_date = true
+creation_date = "%Y-%m-%d %H:%M %z"
+sort = "permission-alpha"
