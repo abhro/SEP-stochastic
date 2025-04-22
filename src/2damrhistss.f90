@@ -1,5 +1,5 @@
 program histogram
-  !   build histogram
+  !!   build histogram
 
   use iso_fortran_env, only: real64
 
@@ -8,12 +8,14 @@ program histogram
   real(kind=real64), parameter :: twopi = 2.d0 * 3.14159265358979323846d0
 
   ! km
-  real(kind=real64), parameter :: rss = 2.5, rs = 6.96e5
+  real(kind=real64), parameter :: rss = 2.5
+  real(kind=real64), parameter :: rs = 6.96e5 !! solar radius in km
 
   ! raw km/s converted to Rs/min
+  !> solar wind speed in Rs/min
   real(kind=real64), parameter :: vsw = 400.0 / rs * 60
 
-  ! angular frequency of sun's rotation
+  !> angular frequency of sun's rotation
   real(kind=real64), parameter :: omega = twopi / (27.27 * 24 * 60)
   real(kind=real64), parameter :: k4ok2 = 12.4242, k6ok2 = 242.4242
 

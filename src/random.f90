@@ -13,8 +13,8 @@ contains
   !end function
 
   real(kind=real64) impure function gasdev(idum)
-    ! This function uses Box-Muller transform to generate two normally
-    ! distributed random numbers at a time
+    !! This function uses Box-Muller transform to generate two normally
+    !! distributed random numbers at a time
     integer, intent(in out) :: idum
     real(kind=real64)       :: fac, rsq, v1, v2
     !U    USES ran2

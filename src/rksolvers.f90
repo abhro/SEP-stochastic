@@ -37,7 +37,7 @@ contains
   !  yout(1:n) = y(:) + (h/6.0) * (dydx(:) + dyt(:) + 2.0*dym(:))
   !end function
 
-  ! single step of RK4
+  !> single step of RK4
   function rk4(f, x0, y0, h, odefun_param) result(yout)
     procedure(odefun) :: f
     real(kind=real64) :: x0

@@ -65,6 +65,7 @@ contains
   end function
 
   real(kind=real64) pure function beta2gamma(beta)
+    !! convert beta (velocity in units of c) to Lorentz factor gamma
     real(kind=real64), intent(in) :: beta
     beta2gamma = 1.0 / dsqrt(1.0 - beta*beta)
   end function

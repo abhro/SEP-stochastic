@@ -11,16 +11,16 @@ module file_op
 
 
 contains
-  ! opens file pclfil and assigns to nsts and
-  ! opens file anfil  and assigns to nfl
-  ! pclfil and anfil is set in readparam
+  !> opens file pclfil and assigns to nsts and
+  !> opens file anfil  and assigns to nfl
+  !> pclfil and anfil is set in readparam
   subroutine fl_open(nfl, nsts)
     integer, intent(out)   :: nfl, nsts
 
     character(len=256)    :: pclfil, finfil, sucfil, nodesfil, anfil, anstfil
     common/filnm/pclfil,finfil,sucfil,nodesfil,anfil,anstfil
 
-    character(len=2)      :: pclfil_n
+    !character(len=2)      :: pclfil_n
 
     integer               :: nfinish
     common/nfinish/nfinish

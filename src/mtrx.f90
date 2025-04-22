@@ -5,7 +5,6 @@ module mtrx
   use dxx, only: cofm
   use dmumu, only: cofdu
   use file_op, only: open_file_from_environment
-  use sim3d_utils, only: f0mod
 
   implicit none
 

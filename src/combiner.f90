@@ -10,7 +10,8 @@ program combon
 
   implicit none
 
-  real(kind=real64) :: b(3), cv(3), gb(3), b1rs
+  real(kind=real64) :: b(3), gb(3), b1rs
+  !real(kind=real64) :: cv(3)
   integer :: i, j, k
   integer :: b1rs_infileunit
   integer :: maggrid_infileunit, maggrid_outfileunit

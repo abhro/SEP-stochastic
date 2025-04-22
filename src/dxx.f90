@@ -12,9 +12,9 @@ contains
   end subroutine
 
   subroutine cofm(r, p, pa, beta, bv, bm, cvtu, gbm, dbbds, b1s, gb1s, g, dg)
-    !   calculate diffusion coeficients in magnetic field coordinate
-    !   and derivatives of g with respect to r, theta, phi
-    !   2 perpendicular coeficients must equal to the poles
+    !!   calculate diffusion coeficients in magnetic field coordinate
+    !!   and derivatives of g with respect to r, theta, phi
+    !!   2 perpendicular coeficients must equal to the poles
     real(kind=real64), intent(in)  :: p, pa, beta, bm, dbbds, b1s
     real(kind=real64), intent(in)  :: r(3), bv(3), cvtu(3), gbm(3), gb1s(3)
     real(kind=real64), intent(out) :: g(3), dg(3)

@@ -50,7 +50,7 @@ contains
     facob = facob*cos(ob)**2 + sin(ob)**2/facob
 
     if (rnm > 0.5) then
-      pth = EP * vth / CSPEED !*sqrt((skp-1.5)/skp) !to kappa
+      pth = EP * vth / CSPEED ! * sqrt((skp-1.5)/skp) ! to kappa
       !   assume all species have the same thermal speed
       !    or temperature proportional to mass (Jacco Vink et al 2015,A&A)
       pth = rnm / rnz * pth !in rigidity
@@ -118,7 +118,7 @@ contains
     scanw = scanw*PI/180
   end subroutine
 
-  real(kind=real64) function fb0(torg,rpb)
+  real(kind=real64) function fb0(torg, rpb)
     real(kind=real64), intent(in)  :: torg, rpb(5)
     !integer             :: nfbconst
     !real(kind=real64)              :: rb0, rmax, rk, deltat, tc, tl, tmodel0

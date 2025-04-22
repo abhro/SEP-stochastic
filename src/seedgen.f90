@@ -22,8 +22,7 @@ program seedgen
   print *, "iseed = ", iseed
 
 
-  call open_file_from_environment(&
-    "SEEDS_FILE", seeds_outfileunit, 'FORMATTED')
+  call open_file_from_environment("SEEDS_FILE", seeds_outfileunit, 'FORMATTED')
 
   do i = 1, NSEEDMAX
 

@@ -7,7 +7,7 @@ module cme_cross
   use file_op, only: open_file_from_environment
   implicit none
 contains
-  !  read in parameters for CME shock ellipsoid in Kwon's model
+  !>  read in parameters for CME shock ellipsoid in Kwon's model
   subroutine preparecme
 
     real(kind=real64)  :: pexsk(0:144,8), vskf0, acsk, tska(20), pska(20,8)
@@ -153,7 +153,7 @@ contains
     !r1au(2) = theta_skc
 
     !tpsw = ((r1au(1)-k4ok2/r1au(1)-k6ok2/r1au(1)**3/3)
-    !&   -(rc1 - k4ok2/rc1 - k6ok2/rc1**3/3))/vsw
+    !   &  - (rc1 - k4ok2/rc1 - k6ok2/rc1**3/3))/vsw
     ! r1au(3) = phiskc - omega*tpsw
     ! call drvbmag(r1au, bv, bm, cvtu, gbmag, bxgb2, dbbds, pol, b1s, gb1s)
     ! call solarwind(r1au, vpl, gvpl, densw)
@@ -202,8 +202,7 @@ contains
     tauc2_0 = tauc2 + tska(1)
     tauc1_0 = tauc1 + tska(1)
     !!====================================================
-    call open_file_from_environment(&
-      "CME_PROP_MODEL_FILE", cpm_fileunit, "FORMATTED")
+    call open_file_from_environment("CME_PROP_MODEL_FILE", cpm_fileunit, "FORMATTED")
     !open (newunit=cpm_fileunit, file = trim(dir)//'cmepropmodel.dat')
     write(cpm_fileunit,'(A)')'tauf(min): rising phase time '
     write(cpm_fileunit,'(A)')'tcme0(min): zero time of CME shock'
@@ -212,8 +211,7 @@ contains
     write(cpm_fileunit,'(A)')'rc1:position at critical time of CME leading edge'
     write(cpm_fileunit,'(A)')'dso(RS): standoff distance'
     write(cpm_fileunit,'(A)')'ca1,cs1(Rs/min): Alfven and sound speed at rc1 '
-    write(cpm_fileunit,'(A)')'ca2,cs2(Rs/min): Alfven and sound speed at the
-      & shealth rc1+dso/2'
+    write(cpm_fileunit,'(A)')'ca2,cs2(Rs/min): Alfven and sound speed at the shealth rc1+dso/2'
     write(cpm_fileunit,'(A)')'=============================================='
     write(cpm_fileunit,'(A)')'Calculated variables:'
     write(cpm_fileunit,'(A,F5.1)')'tauf(min)=',tauf
@@ -355,8 +353,7 @@ contains
       pexsk(ii,8) = pexsk(0,8) + (alinf - pexsk(0,8))/jj*ii
     end do
 
-    call open_file_from_environment(&
-      "EXTENDED_CME_DATA_FILE", ecme_fileunit, "FORMATTED")
+    call open_file_from_environment("EXTENDED_CME_DATA_FILE", ecme_fileunit, "FORMATTED")
     !open(newunit=ecme_fileunit, file=trim(dir)//'extended_cme.dat')
     write(ecme_fileunit,'(A)') 'Time Maptime, 8 perameters in Rs as in cme.dat'
     do i = 1, nsk
@@ -550,6 +547,7 @@ contains
       !  calculate shock velocity (normal)
       dr2xsk = dmrtx(sinthetask, costhetask, sinphisk, cosphisk, dthetaskc, dphiskc)
       dxp2r = dmxptr(gmsk, dgmsk)
+      ! TODO convert to matmul stuff
       do i = 1, 3
         do j = 1, 3
           dxp2x(i,j) = dot_product(dr2xsk(i,1:3), xp2r(1:3,j)) + &

@@ -29,25 +29,23 @@ program maggrid
   real(kind=real64)  :: bgrid(0:N_R,0:N_THETA,0:N_PHI,3)
   real(kind=real64)  :: gbgrid(0:N_R,0:N_THETA,0:N_PHI,3)
 
-  !Vector of lower-triangular matrices, where each matrix is of the form
-  !```math
-  !\begin{bmatrix}
-  !P_0^0    & \cdot    & \cdot    & \cdots & \cdot       & \cdot       & \cdot  \\
-  !P_1^0    & P_1^1    & \cdot    & \cdots & \cdot       & \cdot       & \cdot  \\
-  !P_2^0    & P_2^1    & P_2^2    & \cdots & \cdot       & \cdot       & \cdot  \\
-  !\vdots   & \vdots   & \vdots   & \ddots & \vdots      & \vdots      & \vdots \\
-  !P_{38}^0 & P_{38}^1 & P_{38}^2 & \cdots & P_{38}^{38} & \cdot       & \cdot  \\
-  !P_{39}^0 & P_{39}^1 & P_{39}^2 & \cdots & P_{39}^{38} & P_{39}^{39} & \cdot  \\
-  !P_{40}^0 & P_{40}^1 & P_{40}^2 & \cdots & P_{40}^{38} & P_{40}^{39} & P_{40}^{40}
-  !\end{bmatrix}
-  !```
-  !where each ``P_ℓ^m`` is a matrix evaluated at an ``x`` given by the vector's
-  !index, and each ``⋅`` signifies a zero entry in the matrix.
-  real(kind=real64) :: ALP_TABLE(0:N_THETA, 0:NS, 0:NS)
-  ! first derivative
-  real(kind=real64) :: DALP_TABLE(0:N_THETA, 0:NS, 0:NS)
-  ! second derivative
-  real(kind=real64) :: D2ALP_TABLE(0:N_THETA, 0:NS, 0:NS)
+  !>Vector of lower-triangular matrices, where each matrix is of the form
+  !>```math
+  !>\begin{bmatrix}
+  !>P_0^0    & \cdot    & \cdot    & \cdots & \cdot       & \cdot       & \cdot  \\
+  !>P_1^0    & P_1^1    & \cdot    & \cdots & \cdot       & \cdot       & \cdot  \\
+  !>P_2^0    & P_2^1    & P_2^2    & \cdots & \cdot       & \cdot       & \cdot  \\
+  !>\vdots   & \vdots   & \vdots   & \ddots & \vdots      & \vdots      & \vdots \\
+  !>P_{38}^0 & P_{38}^1 & P_{38}^2 & \cdots & P_{38}^{38} & \cdot       & \cdot  \\
+  !>P_{39}^0 & P_{39}^1 & P_{39}^2 & \cdots & P_{39}^{38} & P_{39}^{39} & \cdot  \\
+  !>P_{40}^0 & P_{40}^1 & P_{40}^2 & \cdots & P_{40}^{38} & P_{40}^{39} & P_{40}^{40}
+  !>\end{bmatrix}
+  !>```
+  !>where each ``P_ℓ^m`` is a matrix evaluated at an ``x`` given by the vector's
+  !>index, and each ``⋅`` signifies a zero entry in the matrix.
+  !> DALP_TABLE is the first derivative
+  !> D2ALP_TABLE is the second derivative
+  real(kind=real64), dimension(0:N_THETA, 0:NS, 0:NS) :: ALP_TABLE, DALP_TABLE, D2ALP_TABLE
 
   chunk = 1
 
@@ -279,8 +277,8 @@ contains
 
 
   subroutine init_aplm(alp_arr, dalp_arr, d2alp_arr)
-    ! populate alp, dalp, d2alp with the associated legendre polynomials,
-    ! and its first and second derivatives respectively
+    !> populate alp, dalp, d2alp with the associated legendre polynomials,
+    !> and its first and second derivatives respectively
     real(kind=real64), intent(out) ::   alp_arr(0:N_THETA,0:NS,0:NS)
     real(kind=real64), intent(out) ::  dalp_arr(0:N_THETA,0:NS,0:NS)
     real(kind=real64), intent(out) :: d2alp_arr(0:N_THETA,0:NS,0:NS)

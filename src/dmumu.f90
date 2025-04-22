@@ -19,8 +19,8 @@ contains
   end subroutine
 
   subroutine cofdu(p, pa, beta, bm, du, ddu, ndmumu)
-    !   subroutine to calculate pitch angle diffusion coefficient
-    !   and its derivative with respect to pa = cos().
+    !!   subroutine to calculate pitch angle diffusion coefficient
+    !!   and its derivative with respect to pa = cos().
 
     real(kind=real64), intent(in)     :: p
     real(kind=real64), intent(in out) :: pa

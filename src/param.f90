@@ -8,11 +8,11 @@ module param
   real(kind=real64), parameter :: PI = 3.14159265358979323846d0, TWOPI = 2.d0*PI
 
   real(kind=real64), parameter :: &
-    CSPEED = 25.8441774d0, &    ! speed of light in R_sun/min
-    QoMSI = 9.57883376d7, &     ! proton charge-to-mass ratio in coulomb/kg
-    EP = 0.938d0, &             ! proton rest energy in GeV
-    EE = 0.510998918d-3, &      ! electron rest energy in GeV
-    GAMMA_CS = 1.6666666666666666666d0 ! heat capacity ratio
+    CSPEED = 25.8441774d0, &    !! speed of light in R_sun/min
+    QoMSI = 9.57883376d7, &     !! proton charge-to-mass ratio in coulomb/kg
+    EP = 0.938d0, &             !! proton rest energy in GeV
+    EE = 0.510998918d-3, &      !! electron rest energy in GeV
+    GAMMA_CS = 1.6666666666666666666d0 !! heat capacity ratio
 
   ! program parameters
 

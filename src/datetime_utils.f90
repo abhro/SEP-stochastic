@@ -11,7 +11,7 @@ module datetime_utils
 
 contains
   pure logical function is_leap_year(year)
-    ! returns if a function is a Gregorian leap year
+    !! returns if a function is a Gregorian leap year
     integer, intent(in) :: year
     is_leap_year = &
       mod(year, 400) == 0 .or. &
@@ -19,7 +19,7 @@ contains
   end function
 
   function seconds_of_year() result(total_seconds)
-    ! return how many seconds have passed since the year started
+    !! return how many seconds have passed since the year started
 
     integer :: total_seconds
 
@@ -49,36 +49,25 @@ contains
 
 
   subroutine caldate(jday, iyear, iyday)
-    !==================================================
-    !
-    !  This routine takes the modified Julian date and
-    !  converts it to a date and time string.
-    !
-    !  On Input:
-    !
-    !     JDAY     modified Julian day (integer)
-    !
-    !  On Output:
-    !
-    !     DCHAR    date string (character)
-    !     IDAY     day of the month (integer)
-    !     IYDAY    year day (integer)
-    !     IYEAR    year (integer)
-    !     MONTH    month of the year (integer)
-    !     TCHAR    time string (character)
-    !
-    !  Calls:  GREGORIAN
-    !
-    !==================================================
+    !!  This routine takes the modified Julian date and
+    !!  converts it to a date and time string.
+    !!
+    !!  Calls:  GREGORIAN
 
     !--------------------------------------------------
     !  Define local data.
     !--------------------------------------------------
     !
-    real(kind=real64), intent(in) :: jday
-    !character(len=11)             :: dchar, tchar
-    integer, intent(out)          :: iyday, iyear
-    integer                       :: iday, month
+    real(kind=real64), intent(in) :: jday   !!  modified Julian day (integer)
+
+    ! older output arguments
+    !character(len=11)             :: dchar !!  date string (character)
+    !character(len=11)             :: tchar !!  time string (character)
+    integer, intent(out)          :: iyday  !!  year day (integer)
+    integer, intent(out)          :: iyear  !!  year (integer)
+    integer                       :: iday   !!  day of the month (integer)
+    integer                       :: month  !!  month of the year (integer)
+
     integer                       :: ihour, imin, isec, julian
     real(kind=real64)             :: fjulian, hour, min
     character(len=3), parameter   :: mchar(12) = [ &
@@ -128,23 +117,14 @@ contains
   end subroutine
 
   pure type(gregorian_date) function gregorian(julian)
-    !
-    !==============================================
-    !                                           ===
-    !  This routine converts Julian day number  ===
-    !  to calendar (Gregorian) date.            ===
-    !                                           ===
-    !  On Input:                                ===
-    !                                           ===
-    !     JULIAN   Julian day (integer)         ===
-    !                                           ===
-    !==============================================
+    !!  This routine converts Julian day number to calendar (Gregorian) date.
+
 
     !----------------------------------------------
     !  Define local data.
     !----------------------------------------------
-    !
-    integer, intent(in) :: julian
+
+    integer, intent(in) :: julian !!     Julian day (integer)
 
     integer, parameter  :: IYD(13) = [&
       1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366]
@@ -167,7 +147,6 @@ contains
     !==============================================
     !  Begin executable code.
     !==============================================
-    !
 
     ! all divisions here are meant to be integer divisions
     f = julian + JGREG + (((4 * julian + BGREG) / 146097) * 3) / 4 + CGREG
@@ -209,8 +188,7 @@ contains
 
 
   real(kind=real64) function modjulianday(year, month, day, fracday)
-    !
-    !   calculate the julian day from day, month, year and fraction of a day
+    !! calculate the julian day from day, month, year and fraction of a day
 
     real(kind=real64), intent(in) :: fracday
     integer, intent(in)           :: day, month, year

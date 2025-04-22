@@ -124,7 +124,7 @@ program shockfront
   call preparedxx(ndxx)
   call preparefb
   call record_nodes(nodes)
-  write(*,*)'nodes =',nodes
+  write(*,*) 'nodes =', nodes
   !   normalize mean free path at 1 GV
   e0 = rp2e(1.0d0)
   call set_rlambda(e0)
@@ -247,12 +247,11 @@ program shockfront
 contains
 
 
-  !  random walk of energetic particles in magnetic
-  !  variables: t, xp(5)
-  !  x - spatial coordinators
-  !  p - momentum
-  !  pa - pitch angle
-
+  !>  random walk of energetic particles in magnetic
+  !>  variables: t, xp(5)
+  !>  - x - spatial coordinators
+  !>  - p - momentum
+  !>  - pa - pitch angle
   subroutine walk3d(iseed, rp0, rpb, ck, fs, t0, t, tsp, ns, dnsk0, bv0, nsplvl)
 
     ! rp0,rpb = (r,theta, phi, p, pa)  theta=const, phi follows Parker spiral
