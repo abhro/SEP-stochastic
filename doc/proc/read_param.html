@@ -1,0 +1,1543 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for Fortran Program">
+    <meta name="author" content="" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>read_param &ndash; Fortran Program</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Fortran Program </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/namelists.html">Namelists</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>read_param
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.7% of total for procedures.">77 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/file_op.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/file_op.f90.html'>file_op.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/file_op.html'>file_op</a></li>
+            <li class="breadcrumb-item active" aria-current="page">read_param</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#common-0"
+         aria-expanded="false" aria-controls="common-0">
+         <h4 class="card-header bg-primary text-white">Common Blocks</h4>
+      </a>
+      <div id="common-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../proc/read_param.html#common-bpark">bpark</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-dir~2">dir</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-filnm~3">filnm</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-rlambda~2">rlambda</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-rlambdax~2">rlambdax</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-nlambda~2">nlambda</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-nlambdaconst~2">nlambdaconst</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-nlambdax~2">nlambdax</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-ndmumu~2">ndmumu</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-ndxx~2">ndxx</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-ndpdt~2">ndpdt</a>
+            <a class="list-group-item" href="../proc/read_param.html#common-acc">acc</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#namelists-0"
+         aria-expanded="false" aria-controls="namelists-0">
+         <h4 class="card-header bg-primary text-white">Namelists</h4>
+      </a>
+      <div id="namelists-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../proc/read_param.html#namelist-input">input</a>
+            <a class="list-group-item" href="../proc/read_param.html#namelist-io">io</a>
+            <a class="list-group-item" href="../proc/read_param.html#namelist-dpdt">dpdt</a>
+            <a class="list-group-item" href="../proc/read_param.html#namelist-dmumu">dmumu</a>
+            <a class="list-group-item" href="../proc/read_param.html#namelist-dxx">dxx</a>
+            <a class="list-group-item" href="../proc/read_param.html#namelist-shkacc">shkacc</a>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine read_param(nodes, nseeds)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nodes~2"></span>
+              integer,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nodes</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nseeds"></span>
+              integer,
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>nseeds</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+
+    <section>
+      <h2>Common Blocks</h2>
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-bpark"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/cofm.html#common-bpark~2">cofm</a>
+      (subroutine)<br><a href="../proc/solarwind1.html#common-bpark~14">solarwind1</a>
+      (function)<br><a href="../proc/f0mod.html#common-bpark~10">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-bpark~11">split</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-bpark~12">vfunc</a>
+      (subroutine)<br><a href="../proc/solarwind.html#common-bpark~13">solarwind</a>
+      (subroutine)<br><a href="../proc/drvbmag.html#common-bpark~15">drvbmag</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-bpark~3">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-bpark~4">inorout</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-bpark~6">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-bpark~5">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-bpark~8">walk3d</a>
+      (subroutine)<br><a href="../proc/sksurface.html#common-bpark~9">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-bpark~7">shockfront</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-bpark~17">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-bpark~16">sim3d</a>
+      (program)<br>">
+           common /bpark/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-densw0"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densw0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vsw~2"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vsw</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k4ok2~2"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k4ok2</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k6ok2~2"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k6ok2</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~2"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b1au"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>b1au</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vom"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vom</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-facip"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>facip</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-dir~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/read_dmumudg.html#common-dir~14">read_dmumuDG</a>
+      (subroutine)<br><a href="../proc/read_dmumuah.html#common-dir~16">read_dmumuAH</a>
+      (subroutine)<br><a href="../proc/read_dmumubk.html#common-dir~18">read_dmumuBK</a>
+      (subroutine)<br><a href="../proc/preparefb.html#common-dir~12">preparefb</a>
+      (subroutine)<br><a href="../proc/read_dxx.html#common-dir~4">read_dxx</a>
+      (subroutine)<br><a href="../proc/prepareptcl.html#common-dir~22">prepareptcl</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-dir~6">preparecme</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-dir~8">sim3d_em</a>
+      (program)<br><a href="../program/shockfront.html#common-dir~10">shockfront</a>
+      (program)<br><a href="../program/sim3d.html#common-dir~20">sim3d</a>
+      (program)<br>">
+           common /dir/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dir"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dir</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-filnm~3"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/fl_open.html#common-filnm">fl_open</a>
+      (subroutine)<br><a href="../proc/record_nodes.html#common-filnm~2">record_nodes</a>
+      (subroutine)<br>">
+           common /filnm/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pclfil~3"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pclfil</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-finfil~3"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>finfil</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sucfil~3"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sucfil</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nodesfil~3"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nodesfil</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-anfil~3"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>anfil</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-anstfil~3"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>anstfil</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-rlambda~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/get_rlambda.html#common-rlambda~6">get_rlambda</a>
+      (function)<br><a href="../proc/set_rlambda.html#common-rlambda~4">set_rlambda</a>
+      (subroutine)<br>">
+           common /rlambda/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rlambda"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rlambda</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-rlambdax~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/get_rlambdax.html#common-rlambdax~6">get_rlambdax</a>
+      (function)<br><a href="../proc/set_rlambdax.html#common-rlambdax~4">set_rlambdax</a>
+      (subroutine)<br>">
+           common /rlambdax/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rlambdax"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rlambdax</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rlambday"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rlambday</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-nlambda~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/set_rlambda.html#common-nlambda~4">set_rlambda</a>
+      (subroutine)<br>">
+           common /nlambda/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nlambda"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nlambda</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-nlambdaconst~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/split.html#common-nlambdaconst~8">split</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-nlambdaconst~4">walk3d</a>
+      (subroutine)<br><a href="../proc/walk3d~2.html#common-nlambdaconst~6">walk3d</a>
+      (subroutine)<br><a href="../proc/walk3d~3.html#common-nlambdaconst~10">walk3d</a>
+      (subroutine)<br>">
+           common /nlambdaconst/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nlambdaconst"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nlambdaconst</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-nlambdax~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/set_rlambdax.html#common-nlambdax~4">set_rlambdax</a>
+      (subroutine)<br>">
+           common /nlambdax/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nlambdax"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nlambdax</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-ndmumu~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/get_rlambda0.html#common-ndmumu~4">get_rlambda0</a>
+      (function)<br><a href="../proc/set_rlambda.html#common-ndmumu~6">set_rlambda</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-ndmumu~10">vfunc</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-ndmumu~8">shockfront</a>
+      (program)<br><a href="../program/sim3d.html#common-ndmumu~14">sim3d</a>
+      (program)<br>">
+           common /ndmumu/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ndmumu"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ndmumu</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-ndxx~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/get_rlambdax.html#common-ndxx~10">get_rlambdax</a>
+      (function)<br><a href="../proc/cofm.html#common-ndxx~5">cofm</a>
+      (subroutine)<br><a href="../proc/set_rlambdax.html#common-ndxx~8">set_rlambdax</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-ndxx~12">shockfront</a>
+      (program)<br><a href="../program/sim3d.html#common-ndxx~14">sim3d</a>
+      (program)<br>">
+           common /ndxx/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ndxx"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ndxx</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-ndpdt~2"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/split.html#common-ndpdt~12">split</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-ndpdt~6">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-ndpdt~4">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-ndpdt~10">walk3d</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-ndpdt~8">shockfront</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-ndpdt~16">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-ndpdt~14">sim3d</a>
+      (program)<br>">
+           common /ndpdt/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ndpdt"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ndpdt</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-acc"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/fs0.html#common-acc~2">fs0</a>
+      (function)<br>">
+           common /acc/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ecrmax"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ecrmax</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ecrmin"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ecrmin</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ob0"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ob0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-obw"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>obw</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-etinj"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>etinj</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fampb"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fampb</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ratkp"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ratkp</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+    <script>
+      $(function () {
+      $('[data-bs-toggle="popover"]').popover()
+      })
+    </script>
+
+    
+    
+
+    
+    
+
+
+
+      <section>
+        <h2>Namelists</h2>
+            <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="namelist-input"></span>
+      <h3>Namelist <a href='../namelist/input.html'>input</a></h3>
+    </div>
+    <div class="card-body">
+        
+  <br class="visible-xs visible-sm hidden-md">
+  <section>
+    <h2>Variables</h2>
+    <table class="table table-striped" id="namelist-input">
+      <thead><tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr></thead>
+      <tbody>
+              <tr id="variable-vswsi">
+      <td><a href="#variable-vswsi">vswSI</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-rssi">
+      <td><a href="#variable-rssi">rsSI</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-bemnt">
+      <td><a href="#variable-bemnt">bemNT</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-tsunday">
+      <td><a href="#variable-tsunday">TsunDAY</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-facip">
+      <td><a href="#variable-facip">facip</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+    </div>
+  </div>
+
+            <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="namelist-io"></span>
+      <h3>Namelist <a href='../namelist/io.html'>io</a></h3>
+    </div>
+    <div class="card-body">
+        
+  <br class="visible-xs visible-sm hidden-md">
+  <section>
+    <h2>Variables</h2>
+    <table class="table table-striped" id="namelist-io">
+      <thead><tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr></thead>
+      <tbody>
+              <tr id="variable-f1n">
+      <td><a href="#variable-f1n">f1n</a></td>
+      <td>character(len=256)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-f2n">
+      <td><a href="#variable-f2n">f2n</a></td>
+      <td>character(len=256)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+    </div>
+  </div>
+
+            <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="namelist-dpdt"></span>
+      <h3>Namelist <a href='../namelist/dpdt.html'>dpdt</a></h3>
+    </div>
+    <div class="card-body">
+        
+  <br class="visible-xs visible-sm hidden-md">
+  <section>
+    <h2>Variables</h2>
+    <table class="table table-striped" id="namelist-dpdt">
+      <thead><tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr></thead>
+      <tbody>
+              <tr id="variable-ndpdt">
+      <td><a href="#variable-ndpdt">ndpdt</a></td>
+      <td>integer</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+    </div>
+  </div>
+
+            <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="namelist-dmumu"></span>
+      <h3>Namelist <a href='../namelist/dmumu.html'>dmumu</a></h3>
+    </div>
+    <div class="card-body">
+        
+  <br class="visible-xs visible-sm hidden-md">
+  <section>
+    <h2>Variables</h2>
+    <table class="table table-striped" id="namelist-dmumu">
+      <thead><tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr></thead>
+      <tbody>
+              <tr id="variable-rlambda">
+      <td><a href="#variable-rlambda">rlambda</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-nlambda">
+      <td><a href="#variable-nlambda">nlambda</a></td>
+      <td>integer</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-ndmumu">
+      <td><a href="#variable-ndmumu">ndmumu</a></td>
+      <td>integer</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-nlambdaconst">
+      <td><a href="#variable-nlambdaconst">nlambdaconst</a></td>
+      <td>integer</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+    </div>
+  </div>
+
+            <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="namelist-dxx"></span>
+      <h3>Namelist <a href='../namelist/dxx.html'>dxx</a></h3>
+    </div>
+    <div class="card-body">
+        
+  <br class="visible-xs visible-sm hidden-md">
+  <section>
+    <h2>Variables</h2>
+    <table class="table table-striped" id="namelist-dxx">
+      <thead><tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr></thead>
+      <tbody>
+              <tr id="variable-rlambdax">
+      <td><a href="#variable-rlambdax">rlambdax</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-rlambday">
+      <td><a href="#variable-rlambday">rlambday</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-ndxx">
+      <td><a href="#variable-ndxx">ndxx</a></td>
+      <td>integer</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-nlambdax">
+      <td><a href="#variable-nlambdax">nlambdax</a></td>
+      <td>integer</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+    </div>
+  </div>
+
+            <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="namelist-shkacc"></span>
+      <h3>Namelist <a href='../namelist/shkacc.html'>shkacc</a></h3>
+    </div>
+    <div class="card-body">
+        
+  <br class="visible-xs visible-sm hidden-md">
+  <section>
+    <h2>Variables</h2>
+    <table class="table table-striped" id="namelist-shkacc">
+      <thead><tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr></thead>
+      <tbody>
+              <tr id="variable-ecrmax">
+      <td><a href="#variable-ecrmax">ecrmax</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-ecrmin">
+      <td><a href="#variable-ecrmin">ecrmin</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-ob0">
+      <td><a href="#variable-ob0">ob0</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-obw">
+      <td><a href="#variable-obw">obw</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-etinj">
+      <td><a href="#variable-etinj">etinj</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-fampb">
+      <td><a href="#variable-fampb">fampb</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+              <tr id="variable-ratkp">
+      <td><a href="#variable-ratkp">ratkp</a></td>
+      <td>real(kind=real64)</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+    </div>
+  </div>
+
+      </section>
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Fortran Program
+              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
