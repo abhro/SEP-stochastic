@@ -41,7 +41,6 @@ FGSL_OPTS_COMP =
 FFLAGS += $(FGSL_OPTS_COMP)
 
 FGSL_OPTS_LINK = -L/usr/local/spack/opt/spack/linux-ubuntu20.04-cascadelake/gcc-9.4.0/gsl-2.7-x2znrtoned4nhaqpluk6oh4jma6tjixe/lib \
-            -L/home1/arahman2021/.local/lib \
             -lfgsl -lgsl -lgslcblas -lm
 
 LDFLAGS += $(FGSL_OPTS_LINK)
@@ -53,15 +52,15 @@ LINK.f90 = $(FC) $(FFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 
 MODULE_SRC_BASENAMES = param file_op epv fb dmumu dxx random datetime_utils \
                        mtrx loadptcl sim3d_utils cme_cross rksolvers
-MODULE_SRCS = $(addprefix src/, $(addsuffix .f90, $(MODULE_SRC_BASENAMES)))
-MODULE_OBJS = $(addsuffix .o,                     $(MODULE_SRC_BASENAMES))
-MODULE_MODS = $(addsuffix .mod,                   $(MODULE_SRC_BASENAMES))
+MODULE_SRCS = $(addprefix modules/, $(addsuffix .f90, $(MODULE_SRC_BASENAMES)))
+MODULE_OBJS = $(addsuffix .o,                         $(MODULE_SRC_BASENAMES))
+MODULE_MODS = $(addsuffix .mod,                       $(MODULE_SRC_BASENAMES))
 
 PROG_SRC_BASENAMES = 2damrhistss maggrid mapb2s combiner seedgen sim3d shockfront
 #PROG_SRC_BASENAMES += sim3d_em
-PROG_SRCS = $(addprefix src/, $(addsuffix .f90, $(PROG_SRC_BASENAMES)))
-PROG_OBJS = $(addsuffix .o,                     $(PROG_SRC_BASENAMES))
-PROG_BINS = $(addsuffix $(PROGEXT),             $(PROG_SRC_BASENAMES))
+PROG_SRCS = $(addprefix programs/, $(addsuffix .f90, $(PROG_SRC_BASENAMES)))
+PROG_OBJS = $(addsuffix .o,                          $(PROG_SRC_BASENAMES))
+PROG_BINS = $(addsuffix $(PROGEXT),                  $(PROG_SRC_BASENAMES))
 
 .SUFFIXES: .o .for .f .f90 .f95 .f03
 .PHONY: modules executables all clean clean-logs clean-objs
