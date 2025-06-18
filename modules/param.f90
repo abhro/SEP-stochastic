@@ -22,11 +22,11 @@ module param
 
   ! for PFSS
   real(kind=real64), parameter :: RSS = 2.5d0
-  integer, parameter :: N_R = 150, N_THETA = 180, N_PHI = 360
-  real(kind=real64)  :: bgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)
-  !real(kind=real64) :: cvgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)
-  real(kind=real64)  :: gbgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)
-  real(kind=real64)  :: b1rsgrid(0:N_R, 0:N_THETA, 0:N_PHI)
+  integer, parameter :: N_R = 150, N_THETA = 180, N_PHI = 360 !! grid size
+  real(kind=real64)  :: bgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)     !! magnetic field at grid points
+  !real(kind=real64) :: cvgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)    !! curvature?
+  real(kind=real64)  :: gbgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)    !! grad B
+  real(kind=real64)  :: b1rsgrid(0:N_R, 0:N_THETA, 0:N_PHI)     !! mapping to solar surface
 
   real(kind=real64), parameter :: epsilon(4) = [0.04, 0.01, 0.04, 0.003]
 

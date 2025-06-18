@@ -497,9 +497,9 @@ contains
   end subroutine
 
   subroutine solarwind(r, vpl, gvpl, densw)
-    !   calculate solar wind velocity in the corotating frame
-    !     and its gradient
-    !     in spherical coordinate system
+    !!   calculate solar wind velocity in the corotating frame
+    !!     and its gradient
+    !!    in spherical coordinate system
     real(kind=real64), intent(in)  :: r(3)
     real(kind=real64), intent(out) :: vpl(3), gvpl(3,3), densw
     !     use leBalnc(1998) model

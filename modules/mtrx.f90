@@ -36,12 +36,10 @@ contains
 
 
   function mxptr(gm) result(xptr)
-    !  calculate matrix for xyz' ellipsoid coordinate Kwon to spheric
-    real(kind=real64), intent(in)  :: gm
-
-    real(kind=real64)              :: xptr(3,3)
-
-    real(kind=real64)              :: sing, cosg
+    !!  calculate matrix for xyz' ellipsoid coordinate Kwon to spheric
+    real(kind=real64), intent(in) :: gm
+    real(kind=real64)             :: xptr(3,3)
+    real(kind=real64)             :: sing, cosg
 
     sing = sin(gm)
     cosg = cos(gm)
@@ -49,12 +47,11 @@ contains
     xptr(1,:) = [0.d0,  0.d0, 1.d0]
     xptr(2,:) = [cosg, -sing, 0.d0]
     xptr(3,:) = [sing,  cosg, 0.d0]
-
   end function
 
 
   function dmxptr(gm, dgm)
-    !  calculate matrix for xyz' ellipsoid coordinate Kwon to spheric
+    !!  calculate matrix for xyz' ellipsoid coordinate Kwon to spheric
     real(kind=real64), intent(in) :: gm, dgm
     real(kind=real64)             :: dmxptr(3,3)
     real(kind=real64)             :: sing, cosg
@@ -69,21 +66,19 @@ contains
 
 
   function mbtr(uax1, uax2, uax3) result(b2r)
-    !  calculate martix from magnetic to polar spheric coordinates
+    !!  calculate martix from magnetic to polar spheric coordinates
     real(kind=real64), intent(in)  :: uax1(3), uax2(3), uax3(3)
     real(kind=real64)              :: b2r(3,3)
 
     b2r(:,1) = uax1(:)
     b2r(:,2) = uax2(:)
     b2r(:,3) = uax3(:)
-
   end function
 
 
   function mrtx(sintheta, costheta, sinphi, cosphi)
-    !  calculate martix from polar spheric to xyz coordinates
+    !!  calculate martix from polar spheric to xyz coordinates
     real(kind=real64), intent(in) :: sintheta, costheta, sinphi, cosphi
-
     real(kind=real64)             :: mrtx(3,3)
 
     mrtx(1,:) = [sintheta*cosphi, costheta*cosphi, -sinphi]
@@ -93,7 +88,7 @@ contains
   end function
 
   function dmrtx(sintheta, costheta, sinphi, cosphi, dtheta, dphi)
-    !  calculate martix from polar spheric to xyz coordinates
+    !!  calculate martix from polar spheric to xyz coordinates
     real(kind=real64), intent(in) :: sintheta, costheta, dtheta
     real(kind=real64), intent(in) :: sinphi, cosphi, dphi
     real(kind=real64)             :: dmrtx(3,3)
@@ -109,14 +104,14 @@ contains
     dmrtx(3,3) = 0.0
   end function
 
-  ! trilinear interpolation
+  !> trilinear interpolation
   function trilinear(phic, x) result(phi)
 
-    !  phic the value of phi at the corner of cubic box of side 1
+    !>  the value of phi at the corner of cubic box of side 1
     real(kind=real64), intent(in)  :: phic(2,2,2)
-    !  location inside the cube (0<=x<=1) or outside x<0 x>1
+    !>  location inside the cube (0<=x<=1) or outside x<0 x>1
     real(kind=real64), intent(in)  :: x(3)
-    !  phi(1)=interpolated phi
+    !>  interpolated phi
     real(kind=real64)              :: phi
 
     phi = phic(1,1,1) * (1-x(1)) * (1-x(2)) * (1-x(3)) &
@@ -131,12 +126,11 @@ contains
   end function
 
   function trilineardif(phic, x) result(dphi)
-
-    !  phic the value of phi at the corner of cubic box of side 1
+    !>  phic the value of phi at the corner of cubic box of side 1
     real(kind=real64), intent(in)  :: phic(2,2,2)
-    !  location inside the cube (0<=x<=1) or outside x<0 x>1
+    !>  location inside the cube (0<=x<=1) or outside x<0 x>1
     real(kind=real64), intent(in)  :: x(3)
-    ! dphi(1)=dphi/dx, dphi(2)=dphi/dy, dphi(3)=dphi/dz
+    !> dphi(1)=dphi/dx, dphi(2)=dphi/dy, dphi(3)=dphi/dz
     real(kind=real64)              :: dphi(3)
 
     dphi(1) = (phic(2,1,1)-phic(1,1,1)) * (1-x(2)) * (1-x(3)) &
@@ -151,7 +145,5 @@ contains
             + (phic(2,1,2)-phic(2,1,1)) *    x(1)  * (1-x(2)) &
             + (phic(1,2,2)-phic(1,2,1)) * (1-x(1)) *    x(2)  &
             + (phic(2,2,2)-phic(2,2,1)) *    x(1)  *    x(2)
-
   end function
-
 end module mtrx

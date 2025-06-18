@@ -259,7 +259,6 @@ contains
     integer, intent(in) :: n
     integer, intent(out), allocatable :: nseeds(:)
 
-
     integer             :: i, seeds_fileunit
 
     allocate(nseeds(n))
@@ -274,6 +273,8 @@ contains
 
 
   subroutine read_b1rs(b1rsgrid)
+    !! Read the magnetic field as a grid in spherical coordinates.
+
     ! USES environment variables
     !     MAGGRID_PROCESSED_INFILENAME
 
@@ -298,6 +299,8 @@ contains
 
 
   subroutine read_maggrid(magfieldgrid, gbgrid)
+    !! Read B and grad B from a magnetic grid file
+
     ! USES environment variables
     !     MAPB2S_MAGGRID_INFILENAME
 
@@ -308,8 +311,7 @@ contains
     integer :: maggrid_fileunit
     real(kind=real64) :: r, theta, phi
 
-    call open_file_from_environment(&
-      "MAGGRID_FILE", maggrid_fileunit, 'FORMATTED')
+    call open_file_from_environment("MAGGRID_FILE", maggrid_fileunit, 'FORMATTED')
 
     do i = 0, N_R
       do j = 0, N_THETA
@@ -324,18 +326,18 @@ contains
   end subroutine
 
   subroutine read_shtc(g, h, n)
-    ! populate g(:,:), h(:,:)
+    !! populate g(:,:), h(:,:)
     ! n is the size of g and h (see declaration)
 
     ! USES environment variables
     !     SHTC_FILE
 
-    integer, intent(in)            :: n
+    integer, intent(in)            :: n !! size of g and h
     real(kind=real64), intent(out) :: g(0:n,0:n), h(0:n,0:n)
 
-    integer :: infileunit
-    integer :: l, m ! iteration variables
-    integer :: ll, mm ! dummy storage
+    integer :: infileunit !! file unit holding coefficients
+    integer :: l, m       !! iteration variables
+    integer :: ll, mm     !! dummy storage
 
     call open_file_from_environment("SHTC_FILE", infileunit, 'FORMATTED')
 
@@ -376,6 +378,7 @@ contains
   end subroutine
 
   subroutine write_b1rs(b1rs, map)
+    !! writes mapping of magnetic field at a point to the solar surface
 
     ! USES environment variables
     !     MAPB2S_B1RS_OUTFILENAME
