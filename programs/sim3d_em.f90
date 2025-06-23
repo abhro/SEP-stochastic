@@ -6,23 +6,24 @@ program sim3d_em
   !  pitch angle with outward magnetic field line
   !  pitch angle diffusion (symmetric D_{\mu\mu})
   !  perpendicular diffusion added
+  use iso_fortran_env, only: real64
   use datetime_utils, only: caldate
   use param, only: PI, NSPMAX, NFMAX, nseedmax, bgrid, gbgrid, epsilon
   !use param, only: nnds, nfl, nsts
   use cme_cross, only: inorout, preparecme
-  use sim3d_utils, only: f0mod, compress, solarwindtemp, split
+  use sim3d_utils, only: f0mod, compress, solarwindtemp, split, vfunc, drvbmag
   use epv, only: rp2e, e2p
   use fb, only: fb0, preparefb
-  use mtrx, only: loadmaggrid_processed, norm2, vfunc, mrtx, drvbmag
+  use mtrx, only: norm2, mrtx
   use loadptcl, only: prepareptcl
   use dmumu, only: preparedmumu
   use dxx, only: preparedxx, set_rlambda, set_rlambdax
-  use file_op, only: readparam, record_nodes, fl_open, fl_close, writehead
+  use file_op, only: record_nodes!, fl_open, writehead, fl_close, readparam
   use random, only: gasdev
   implicit none
   include 'omp_lib.h'
-  real*8              :: rpb(5), rp0(5), rp0org(5), r0(3), rb(3), x0(6)
-  real*8              :: rnz, rnm
+  real(kind=real64)   :: rpb(5), rp0(5), rp0org(5), r0(3), rb(3), x0(6)
+  real(kind=real64)   :: rnz, rnm
   common/specie/rnz,rnm
   !common/sptm/sptm
   integer             :: npmax, nsucmin, nfbconst, ndpdt, num(3)
@@ -66,13 +67,14 @@ program sim3d_em
 
   nodes = 39 !<100 for # of output files
   chunk = 1
-  call readparam(nodes)
-  call loadmaggrid_processed
-  call prepareptcl
-  call preparedmumu
-  call preparedxx
-  call preparefb
-  call record_nodes(nnds, nodes)
+  ! FIXME
+  !call readparam(nodes)
+  !call loadmaggrid_processed
+  !call prepareptcl()
+  !call preparedmumu()
+  !call preparedxx()
+  !call preparefb()
+  !call record_nodes(nnds, nodes)
   write(*,*)'nodes=',nodes
   !   normalize mean free path at 1 GV
   e0 = rp2e(1.0d0)
@@ -85,8 +87,8 @@ program sim3d_em
   te = 0.0
   id = 0
   write(rankstr,"(i0.2)") id
-  call fl_open(nfl, nsts)
-  call writehead
+  !call fl_open(nfl, nsts)
+  !call writehead
 
   do i = 1, nf
     flx = 0.0
@@ -114,13 +116,14 @@ program sim3d_em
     !call inorout(t0org, x0, ino0, dnsk, vsk, vnx)
     call inorout(t0org, x0, dnsk, vsk, vnx)
 
-    write(nsts,*) 'For flux at point', i
-    write(nsts,*) 'Time,postion,energy/n,\mu'
-    write(nsts,"(f12.5,3f11.4,e13.5,f9.5,2(1pe13.5))") tf(i),rf(1:3,i),ef(i),rmuf(i)
-    write(nsts,"(' sp = ',1pe12.4,'; ap = ',1pe12.4)") sp,ap
-    write(nsts,*) 'Sample source injection location output are:'
-    write(nsts,*) 'tlast,exp(ck-hb+h0),rpb,ns,nsplvl'
-    call flush(nsts)
+    ! FIXME
+    !write(nsts,*) 'For flux at point', i
+    !write(nsts,*) 'Time,postion,energy/n,\mu'
+    !write(nsts,"(f12.5,3f11.4,e13.5,f9.5,2(1pe13.5))") tf(i),rf(1:3,i),ef(i),rmuf(i)
+    !write(nsts,"(' sp = ',1pe12.4,'; ap = ',1pe12.4)") sp,ap
+    !write(nsts,*) 'Sample source injection location output are:'
+    !write(nsts,*) 'tlast,exp(ck-hb+h0),rpb,ns,nsplvl'
+    !call flush(nsts)
 
     !$OMP  PARALLEL NUM_THREADS(nodes) DEFAULT(firstprivate)&
     !$OMP& SHARED(rp0,h0,chunk,np,nseeds,bgrid,flx,dflx)
@@ -157,7 +160,8 @@ program sim3d_em
     !$OMP END DO
     !$OMP BARRIER
     !$OMP END PARALLEL
-    write(nsts, writefmt)-1000., 1., 1., 1., 1., 1., 1., 1., -9, -1
+    ! FIXME
+    !write(nsts, writefmt)-1000., 1., 1., 1., 1., 1., 1., 1., -9, -1
     call flush(nsts)
     if (rnm > 0.5) then
       flx = flx / npp * rnm / rnz * rp0(4)**2 * 3e7 !flux in 1/(cm^2 s sr MeV/n)
@@ -171,10 +175,11 @@ program sim3d_em
     call caldate(treal, iyear, iyday)
     tod = treal - itjul
     doy = iyday + tod
-    write(nfl,"(i4,f12.7,7(1pe12.4))") iyear, doy, rf(1:3,i), ef(i), rmuf(i), flx, dflx
+    ! FIXME
+    !write(nfl,"(i4,f12.7,7(1pe12.4))") iyear, doy, rf(1:3,i), ef(i), rmuf(i), flx, dflx
     call flush(nfl)
   end do
-  call fl_close(nfl, nsts)
+  !call fl_close(nfl, nsts)
 
 contains
 
@@ -325,7 +330,7 @@ contains
 
       if (b1s > 0 .and. dnsk > 0) then
         bm = norm2(bv0(1:3))
-        call mrtx(sin(r(2)), cos(r(2)), sin(r(3)), cos(r(3)), r2x)
+        r2x = mrtx(sin(r(2)), cos(r(2)), sin(r(3)), cos(r(3)))
         vnr(1:3) = vnx(1)*r2x(1,1:3) + vnx(2)*r2x(2,1:3) + vnx(3)*r2x(3,1:3)
         ob = acos(abs(bv0(1)*vnr(1)+bv0(2)*vnr(2)+bv0(3)*vnr(3))/bm)
         vswn = sum(vpl * vnr)
@@ -333,11 +338,11 @@ contains
         !if (u1 < 0) write(*,*) 'NaN1'
         va = 187.8*bm/sqrt(densw)
         amach = u1/va
-        call solarwindtemp(r, tempsw)
+        tempsw = solarwindtemp(r)
         vs = 7.83e-6 * sqrt(gamma * tempsw)
         smach = u1/vs
         if (amach > 1.0) then
-          call compress(amach, smach, ob, rsh)
+          rsh = compress(amach, smach, ob)
           costheta2 = cos(ob)**2
           sintheta2 = 1-costheta2
           rshf = 1

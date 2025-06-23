@@ -13,8 +13,8 @@ program shockfront
   use epv, only: rp2e, e2p
   use cme_cross, only: inorout, preparecme, locate
   use fb, only: fb0, preparefb
-  use sim3d_utils, only: f0mod, compress, solarwindtemp, split
-  use mtrx, only: drvbmag, vfunc, mrtx, mxptr, norm2
+  use sim3d_utils, only: f0mod, compress, solarwindtemp, drvbmag, vfunc, split
+  use mtrx, only: mrtx, mxptr, norm2
   use file_op, only: read_maggrid, read_b1rs, read_param, record_nodes, fl_open, write_head
   use loadptcl, only: prepareptcl
   use dmumu, only: preparedmumu

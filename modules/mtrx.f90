@@ -18,7 +18,7 @@ contains
 
   function cartesian2spherical(x) result(r)
     real(kind=real64), intent(in) :: x(3)
-    real(kind=real64), intent(out) :: r(3)
+    real(kind=real64) :: r(3)
 
     r(1) = norm2(x)
     r(2) = acos(x(3) / r(1))  ! acos(z/r)
@@ -27,11 +27,11 @@ contains
 
   function spherical2cartesian(r) result(x)
     real(kind=real64), intent(in) :: r(3)
-    real(kind=real64), intent(out) :: x(3)
+    real(kind=real64) :: x(3)
 
-    cartesian(1) = r(1) * sin(r(2)) * cos(r(3)) ! r sin(theta) cos(phi)
-    cartesian(2) = r(1) * sin(r(2)) * sin(r(3)) ! r sin(theta) sin(phi)
-    cartesian(3) = r(1) * cos(r(2))             ! r cos(theta)
+    x(1) = r(1) * sin(r(2)) * cos(r(3)) ! r sin(theta) cos(phi)
+    x(2) = r(1) * sin(r(2)) * sin(r(3)) ! r sin(theta) sin(phi)
+    x(3) = r(1) * cos(r(2))             ! r cos(theta)
   end function
 
 

@@ -1,8 +1,8 @@
 module cme_cross
   use iso_fortran_env, only: real64
   use param, only: PI, TWOPI
-  use sim3d_utils, only: solarwindtemp
-  use mtrx, only: drvbmag, solarwind, mrtx, mxptr, dmxptr, norm2, dmrtx
+  use sim3d_utils, only: solarwind, solarwindtemp, drvbmag
+  use mtrx, only: mrtx, mxptr, dmxptr, norm2, dmrtx
   use datetime_utils, only: modjulianday
   use file_op, only: open_file_from_environment
   implicit none
@@ -511,12 +511,11 @@ contains
     r2xsk = mrtx(sinthetask, costhetask, sinphisk, cosphisk)
     !  r2xsk matrix to convert r-the-phi of shock ellipsoid center to xyz of
     !    of HEEQ. r = z theta = x, phi = y
-    call mxptr(gmsk, xp2r)
+    xp2r = mxptr(gmsk)
 
     !xp2x = matmul(r2xsk, xp2r)
     do i = 1, 3
-      xp2x(i,1:3) = r2xsk(i,1)*xp2r(1,1:3) + r2xsk(i,2)*xp2r(2,1:3) + &
-          r2xsk(i,3)*xp2r(3,1:3)
+      xp2x(i,1:3) = r2xsk(i,1)*xp2r(1,1:3) + r2xsk(i,2)*xp2r(2,1:3) + r2xsk(i,3)*xp2r(3,1:3)
     end do
 
     ! Convert spherical coordinates to Cartesian
