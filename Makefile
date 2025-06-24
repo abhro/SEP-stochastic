@@ -23,9 +23,8 @@ FFLAGS += -g -O0 -fvar-tracking -fopenmp
 #LDFLAGS += -O0 -g
 
 # Options for compiling and linking with GNU Scientific Library (GSL) Fortran version
-#FGSL_OPTS_COMP =
-#FGSL_OPTS_LINK = -L/usr/local/spack/opt/spack/linux-ubuntu20.04-cascadelake/gcc-9.4.0/gsl-2.7-x2znrtoned4nhaqpluk6oh4jma6tjixe/lib \
-#            -lfgsl -lgsl -lgslcblas -lm
+FGSL_OPTS_COMP =
+FGSL_OPTS_LINK = -I/usr/local/fgsl/include -lgsl -lgslcblas -lm
 
 FFLAGS += $(FGSL_OPTS_COMP)
 LDFLAGS += $(FGSL_OPTS_LINK)
