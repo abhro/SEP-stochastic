@@ -12,10 +12,10 @@ program sim3d
   use param, only: PI, NSPMAX, NFMAX, N_R, N_THETA, N_PHI, CSPEED, GAMMA_CS, &
                    nseedmax, bgrid, gbgrid, b1rsgrid, epsilon
   use cme_cross, only: inorout, preparecme
-  use sim3d_utils, only: f0mod, compress, solarwindtemp, split
+  use sim3d_utils, only: f0mod, compress, solarwindtemp, split, drvbmag, vfunc
   use epv, only: rp2e, e2p
   use fb, only: fb0, preparefb, fs0
-  use mtrx, only: norm2, vfunc, mrtx, drvbmag
+  use mtrx, only: norm2, mrtx
   use loadptcl, only: prepareptcl
   use dmumu, only: preparedmumu
   use dxx, only: preparedxx, set_rlambda, set_rlambdax
@@ -204,7 +204,7 @@ program sim3d
     x0(3) = r0(1) * cos(r0(2))
 
     call inorout(t0org, x0, dnsk00, vsk, vnx)
-    print *, __FILE__, ":", __LINE__, ":", "Finished calling inorout"
+    !print *, __FILE__, ":", __LINE__, ":", "Finished calling inorout"
 
     write(nsts,*) 'For flux at point', i
     write(nsts,*) 'Time,postion,energy/n,\mu'
