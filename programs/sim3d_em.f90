@@ -8,8 +8,7 @@ program sim3d_em
   !  perpendicular diffusion added
   use iso_fortran_env, only: real64
   use datetime_utils, only: caldate
-  use param, only: PI, NSPMAX, NFMAX, nseedmax, bgrid, gbgrid, epsilon
-  !use param, only: nnds, nfl, nsts
+  use param, only: PI, NSPMAX, NFMAX, nseedmax, epsilon!, bgrid, gbgrid
   use cme_cross, only: inorout, preparecme
   use sim3d_utils, only: f0mod, compress, solarwindtemp, split, vfunc, drvbmag
   use epv, only: rp2e, e2p
@@ -22,24 +21,26 @@ program sim3d_em
   use random, only: gasdev
   implicit none
   include 'omp_lib.h'
-  real(kind=real64)   :: rpb(5), rp0(5), rp0org(5), r0(3), rb(3), x0(6)
+  real(kind=real64)   :: rpb(5), rp0(5)!, rp0org(5)
+  real(kind=real64)   :: r0(3), rb(3), x0(6)
   real(kind=real64)   :: rnz, rnm
   common/specie/rnz,rnm
   !common/sptm/sptm
   integer             :: npmax, nsucmin, nfbconst, ndpdt, num(3)
-  real*8              :: rb0, rmax, rk, deltat, tc, tl, tmodel0
+  real(kind=real64)   :: rb0, rmax, rk, deltat, tc, tl, tmodel0
+  integer             :: nfl, nsts
   common/nsucmin/nsucmin
   common/npmax/npmax
   common/fbcnst/rb0,rmax,rk,deltat,tc,tl,tmodel0,nfbconst
   common/ndpdt/ndpdt
-  real*8              :: t0sv(2**(NSPMAX+1)), cksv(2**(NSPMAX+1))
-  real*8              :: rpbsv(5,2**(NSPMAX+1))
+  real(kind=real64)   :: t0sv(2**(NSPMAX+1)), cksv(2**(NSPMAX+1))
+  real(kind=real64)   :: rpbsv(5,2**(NSPMAX+1))
   integer             :: nodr(NSPMAX)
   common /svsp/nodr,t0sv,cksv,rpbsv
-  real*8              :: t0org, te, tdl, dmapjul, tcme0
+  real(kind=real64)   :: t0org, te, tdl, dmapjul, tcme0
   common /tmprm/t0org,te,tdl,dmapjul,tcme0
   integer             :: np, nf
-  real*8              :: tf(NFMAX), rf(3,NFMAX), ef(NFMAX), rmuf(NFMAX)
+  real(kind=real64)   :: tf(NFMAX), rf(3,NFMAX), ef(NFMAX), rmuf(NFMAX)
   common/ldptcl/tf,rf,ef,rmuf,np,nf
   character(len=256)  :: dir
   common /dir/dir
@@ -49,22 +50,24 @@ program sim3d_em
   common/rankstr/rankstr
   integer             :: iseed,nseeds(nseedmax)
   common /seed/nseeds
-  real*8              :: densw0, vsw, k4ok2, k6ok2, omega, b1au, vom, facip
+  real(kind=real64)   :: densw0, vsw, k4ok2, k6ok2, omega, b1au, vom, facip
   common/bpark/densw0,vsw,k4ok2,k6ok2,omega,b1au,vom,facip
-  data densw0/166410.0/ !332820.d0/
-  data k4ok2/12.4242d0/, k6ok2/242.4242d0/
-  real*8              :: trgtfs(4), sp, sp0, gp, ap, scanw, h0
+  real(kind=real64)   :: trgtfs(4), sp, sp0, gp, ap, scanw, h0
   common /srcmod/sp,sp0,gp,ap,trgtfs,scanw,h0
-  real*8              :: df0(3), ddf0(3,3), b1s, gb1s(3)
+  real(kind=real64)   :: df0(3), ddf0(3,3), b1s, gb1s(3)
   integer             :: nsplvl
-  real*8              :: bv0(3), bm, cvtu(3), gbmag(3), bxgb2(3), dbbds, pol
+  real(kind=real64)   :: bv0(3), bm, cvtu(3), gbmag(3), bxgb2(3), dbbds, pol
   integer             :: ino, ino0, i, npp, n1, ns, itjul, iyear, iyday
-  real*8              :: dnsk, vsk, vnr(3), vnx(3), ck, fs, t0, tsp
-  real*8              :: e0, flx, dflx, tnp, lsp, pa0, df0dmu, ddf0dmu2
+  real(kind=real64)   :: dnsk, vsk!, vnr(3)
+  real(kind=real64)   :: vnx(3), ck, fs, t0, tsp
+  real(kind=real64)   :: e0, flx, dflx, tnp, lsp, pa0, df0dmu, ddf0dmu2
   character(len=*), parameter :: writefmt = "(e15.7,7(1pe13.5),i3,i3,i3)"
-  real*8              :: t, pab, rate, hb, treal, tod, doy, tb, fb_
-  real*8              :: dino
+  real(kind=real64)   :: t, pab, rate, hb, treal, tod, doy, tb, fb_
+  real(kind=real64)   :: dino
 
+  densw0 = 166410.0 !332820d0
+  k4ok2 = 12.4242d0
+  k6ok2 = 242.4242d0
   nodes = 39 !<100 for # of output files
   chunk = 1
   ! FIXME
@@ -117,16 +120,16 @@ program sim3d_em
     call inorout(t0org, x0, dnsk, vsk, vnx)
 
     ! FIXME
-    !write(nsts,*) 'For flux at point', i
-    !write(nsts,*) 'Time,postion,energy/n,\mu'
-    !write(nsts,"(f12.5,3f11.4,e13.5,f9.5,2(1pe13.5))") tf(i),rf(1:3,i),ef(i),rmuf(i)
-    !write(nsts,"(' sp = ',1pe12.4,'; ap = ',1pe12.4)") sp,ap
-    !write(nsts,*) 'Sample source injection location output are:'
-    !write(nsts,*) 'tlast,exp(ck-hb+h0),rpb,ns,nsplvl'
-    !call flush(nsts)
+    write(nsts,*) 'For flux at point', i
+    write(nsts,*) 'Time,postion,energy/n,\mu'
+    write(nsts,"(f12.5,3f11.4,e13.5,f9.5,2(1pe13.5))") tf(i),rf(1:3,i),ef(i),rmuf(i)
+    write(nsts,"(' sp = ',1pe12.4,'; ap = ',1pe12.4)") sp,ap
+    write(nsts,*) 'Sample source injection location output are:'
+    write(nsts,*) 'tlast,exp(ck-hb+h0),rpb,ns,nsplvl'
+    call flush(nsts)
 
     !$OMP  PARALLEL NUM_THREADS(nodes) DEFAULT(firstprivate)&
-    !$OMP& SHARED(rp0,h0,chunk,np,nseeds,bgrid,flx,dflx)
+    !$OMP& SHARED(rp0,h0,chunk,np,nseeds,flx,dflx) !bgrid
     id = OMP_GET_THREAD_NUM()
     iseed = nseeds(id+1)
     !$OMP DO SCHEDULE(DYNAMIC,chunk) REDUCTION(+:flx,dflx)
@@ -143,15 +146,15 @@ program sim3d_em
       call walk3d(iseed, rp0, rpb, ck, fs, t0, t, tsp, ns, ino, bv0, nsplvl)
       if (ns == -1 .and. tsp < te) then
         dino = real(ino, kind(1.0d0))
-        call split(iseed, rpb, ck, fs, t, nsplvl, dino, bv0, flx, dflx, walk3d)
+        call split(iseed, rpb, ck, fs, t, nsplvl, dino, bv0, flx, dflx, walk3d, nsts)
       else
         rb(1:3) = rpb(1:3)
         pab = rpb(5)
         call f0mod(rb, pab, hb, df0, ddf0, df0dmu, ddf0dmu2)
         rate = exp(ck - hb + h0)
         if (ns >= 0) ns = 1
-        !write(nsts, writefmt) t0org-t, rate, rpb, fs, ns, nsplvl
-        !call flush(nsts)
+        write(nsts, writefmt) t0org-t, rate, rpb, fs, ns, nsplvl
+        call flush(nsts)
         fb_ = fb0(tb, rpb) * rate / 2**nsplvl
         flx = flx + (fs + fb_)
         dflx = dflx + (fs+fb_) * (fs+fb_)
@@ -161,7 +164,7 @@ program sim3d_em
     !$OMP BARRIER
     !$OMP END PARALLEL
     ! FIXME
-    !write(nsts, writefmt)-1000., 1., 1., 1., 1., 1., 1., 1., -9, -1
+    write(nsts, writefmt)-1000., 1., 1., 1., 1., 1., 1., 1., -9, -1
     call flush(nsts)
     if (rnm > 0.5) then
       flx = flx / npp * rnm / rnz * rp0(4)**2 * 3e7 !flux in 1/(cm^2 s sr MeV/n)
@@ -176,10 +179,10 @@ program sim3d_em
     tod = treal - itjul
     doy = iyday + tod
     ! FIXME
-    !write(nfl,"(i4,f12.7,7(1pe12.4))") iyear, doy, rf(1:3,i), ef(i), rmuf(i), flx, dflx
+    write(nfl,"(i4,f12.7,7(1pe12.4))") iyear, doy, rf(1:3,i), ef(i), rmuf(i), flx, dflx
     call flush(nfl)
   end do
-  !call fl_close(nfl, nsts)
+  call fl_close(nfl, nsts)
 
 contains
 
@@ -194,56 +197,59 @@ contains
 
     ! rp0,rpb = (r,theta, phi, p, pa)  theta=const, phi follows Parker spiral
     ! initial or boundary value
-    use param, only: cspeed, gamma
+    use param, only: cspeed, gamma_cs
     use fb, only: fs0
     implicit none
-    real*8            :: ck, fs, t0, t, tsp
+    real(kind=real64) :: ck, fs, t0, t, tsp
     integer           :: ns, nsplvl, ino
-    integer           :: id
-    real*8, parameter :: rdpmax = 100
-    integer           :: is(3)
-    real*8            :: rp0(5), rpb(5)
-    real*8            :: xpk(6), x(3), r(3), vx(3), bv(3), bv0(3)
-    real*8            :: dxpkdt(6), gxw2(3), gxw3(3), gxw2m, gxw3m, gxwmax
-    real*8            :: dxpkdt1(6), gxw2s(3), gxw3s(3)
-    real*8            :: dxpk1(6), dxpk2(6), dxpk(6), xpk1(6)
-    real*8            :: cvtu(3), cvtu0(3), gbmag(3), bxgb2(3), b1s, gb1s(3)
-    real*8            :: culper(3), culpar(3)
-    real*8            :: uax1(3), uax2(3), uax3(3), uax20(3)
-    real*8            :: e(2), sqrte(2)
-    real*8            :: dw(3), bw(3)
-    real*8            :: gb(3), gr(3,3), dgr(3), dgx(3)
-    real*8            :: b2x(3,3), r2x(3,3), b2r(3,3)
-    real*8            :: vpl(3), gvpl(3,3)
+    !integer           :: id
+    real(kind=real64), parameter :: rdpmax = 100
+    !integer           :: is(3)
+    real(kind=real64) :: rp0(5), rpb(5)
+    real(kind=real64) :: bv0(3)
+    real(kind=real64) :: xpk(6), r(3)!, x(3), vx(3), bv(3)
+    real(kind=real64) :: dxpkdt(6), gxw2(3), gxw3(3), gxw2m, gxw3m, gxwmax
+    !real(kind=real64) :: dxpkdt1(6), gxw2s(3), gxw3s(3)
+    !real(kind=real64) :: dxpk1(6), dxpk2(6), xpk1(6)
+    real(kind=real64) :: dxpk(6), b1s
+    !real(kind=real64) :: cvtu(3), cvtu0(3), gbmag(3), bxgb2(3), gb1s(3)
+    !real(kind=real64) :: culper(3), culpar(3)
+    !real(kind=real64) :: uax1(3), uax2(3), uax3(3), uax20(3)
+    real(kind=real64) :: e(2), sqrte(2)
+    real(kind=real64) :: dw(3)!, bw(3)
+    !real(kind=real64) :: gb(3), gr(3,3), dgr(3), dgx(3)
+    real(kind=real64) :: r2x(3,3)
+    !real(kind=real64) :: b2x(3,3), b2r(3,3)
+    real(kind=real64) :: vpl(3)!, gvpl(3,3)
     integer           :: iseed, nseeds(nseedmax)
     common /seed/nseeds
-    real*8            :: vd(3)
+    !real(kind=real64) :: vd(3)
     integer           :: nlambdaconst
     common/nlambdaconst/nlambdaconst
-    real*8            :: densw0, vsw, k4ok2, k6ok2, vom, facip, b1au, omega
+    real(kind=real64) :: densw0, vsw, k4ok2, k6ok2, vom, facip, b1au, omega
     common/bpark/densw0,vsw,k4ok2,k6ok2,omega,b1au,vom,facip
     integer           :: ndpdt
     common/ndpdt/ndpdt
     !data e/5e-6, 0.005/
     data e/5e-8, 0.005/
-    real*8            :: p, pa, p0, pa0, pas, hs
-    real*8            :: t0org, te, tdl, dmapjul, tcme0
+    real(kind=real64) :: p, pa, p0, pa0, pas, hs
+    real(kind=real64) :: t0org, te, tdl, dmapjul, tcme0
     common /tmprm/t0org,te,tdl,dmapjul,tcme0
-    real*8            :: rnz, rnm
+    real(kind=real64) :: rnz, rnm
     common/specie/rnz,rnm
-    real*8            :: rb0, rmax, rk, deltat, tc, tl, tmodel0
+    real(kind=real64) :: rb0, rmax, rk, deltat, tc, tl, tmodel0
     integer           :: nfbconst
     common/fbcnst/rb0,rmax,rk,deltat,tc,tl,tmodel0,nfbconst
-    real*8            :: trgtfs(4), sp, sp0, gp, ap, scanw, h0
+    real(kind=real64) :: trgtfs(4), sp, sp0, gp, ap, scanw, h0
     common/srcmod/sp,sp0,gp,ap,trgtfs,scanw,h0
     integer           :: iw, n, isp, kf
-    real*8            :: df0(3), ddf0(3,3)
-    real*8            :: dnsk, vsk, vnr(3), vnx(3)
-    real*8            :: rsh(3), fs1, dt, srdt, du, densw, gper, tsh, ob, vswn
-    real*8            :: dtmax, dtmin1, dtmin2, dtmin3, dtmin4, dtmin5
-    real*8            :: u1, amach, costheta2, sintheta2, va, vs, smach, tempsw, tacc
-    real*8            :: dlt, dtsk, dxdtn, g2n, fs2, pinj, pc, rbf, rshf, rprs
-    real*8            :: tempds, vthds
+    real(kind=real64) :: df0(3), ddf0(3,3)
+    real(kind=real64) :: dnsk, vsk, vnr(3), vnx(3)
+    real(kind=real64) :: rsh(3), fs1, dt, srdt, du, densw, gper, tsh, ob, vswn
+    real(kind=real64) :: dtmax, dtmin1, dtmin2, dtmin3, dtmin4, dtmin5
+    real(kind=real64) :: u1, amach, costheta2, sintheta2, va, vs, smach, tempsw, tacc
+    real(kind=real64) :: dlt, dtsk, dxdtn, g2n, fs2, pinj, pc, rbf, rshf, rprs
+    real(kind=real64) :: tempds, vthds
 
     r(1:3) = rp0(1:3)
 
@@ -332,14 +338,14 @@ contains
         bm = norm2(bv0(1:3))
         r2x = mrtx(sin(r(2)), cos(r(2)), sin(r(3)), cos(r(3)))
         vnr(1:3) = vnx(1)*r2x(1,1:3) + vnx(2)*r2x(2,1:3) + vnx(3)*r2x(3,1:3)
-        ob = acos(abs(bv0(1)*vnr(1)+bv0(2)*vnr(2)+bv0(3)*vnr(3))/bm)
+        ob = acos(abs(bv0(1)*vnr(1) + bv0(2)*vnr(2) + bv0(3)*vnr(3))/bm)
         vswn = sum(vpl * vnr)
         u1 = vsk - vswn
         !if (u1 < 0) write(*,*) 'NaN1'
         va = 187.8*bm/sqrt(densw)
         amach = u1/va
         tempsw = solarwindtemp(r)
-        vs = 7.83e-6 * sqrt(gamma * tempsw)
+        vs = 7.83e-6 * sqrt(gamma_cs * tempsw)
         smach = u1/vs
         if (amach > 1.0) then
           rsh = compress(amach, smach, ob)
@@ -350,7 +356,7 @@ contains
             rbf = rsh(kf) * (amach*amach-costheta2) / (amach*amach-rsh(kf)*costheta2)
             if (rbf > 1.0000001d0 .and. rsh(kf) > 1.0000001d0) rshf = rsh(kf)
           end do
-          rprs = 1 + gamma*smach*smach*(rshf-1)/rshf*(1-rshf*sintheta2*((rshf+1)&
+          rprs = 1 + gamma_cs*smach*smach*(rshf-1)/rshf*(1-rshf*sintheta2*((rshf+1)&
             * amach * amach - 2 * rshf * costheta2) / 2 / (amach*amach-rshf*costheta2)**2)
           tempds = tempsw / rshf * rprs
           vthds = 7.83e-6 * sqrt(2*tempds)
