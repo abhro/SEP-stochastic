@@ -21,7 +21,7 @@ module param
   integer(kind=int64), parameter :: NBASE = 40, NSPMAX = 20
 
   ! for PFSS
-  real(kind=real64), parameter :: RSS = 2.5d0
+  real(kind=real64), parameter :: RSS = 2.5d0   !! source surface in units of Rsun
   integer, parameter :: N_R = 150, N_THETA = 180, N_PHI = 360 !! grid size
   real(kind=real64)  :: bgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)     !! magnetic field at grid points
   !real(kind=real64) :: cvgrid(0:N_R, 0:N_THETA, 0:N_PHI, 3)    !! curvature?
