@@ -335,7 +335,7 @@ contains
     real(kind=real64)             :: cvtu(3), gbmag(3), bxgb2(3), pol, gb1s(3)
     real(kind=real64)             :: culper(3), culpar(3)
     real(kind=real64)             :: uax1(3), uax2(3), uax3(3)
-    real(kind=real64)             :: gb(3), gr(3,3), dgr(3), dgx(3)
+    real(kind=real64)             :: gb(3), gr(3,3), dgr(3)!, dgx(3)
     real(kind=real64)             :: gvpl(3,3)
     real(kind=real64)             :: df0(3), ddf0(3,3)
     real(kind=real64), parameter  :: rg1 = 4.79259e-5
@@ -343,7 +343,7 @@ contains
     real(kind=real64)             :: sp, sp0, gp, ap, scanw, h0
     common /srcmod/sp,sp0,gp,ap,trgtfs,scanw,h0
     real(kind=real64)             :: vx(3)
-    integer                       :: lpb, lpb2
+    integer                       :: lpb!, lpb2
     real(kind=real64)             :: p, pa
     real(kind=real64)             :: beta, sinmu, cosp
     real(kind=real64)             :: sintheta, costheta, sinphi, cosphi
