@@ -2,32 +2,43 @@ name = "SEP-stochastic"
 version = "0.0.1"
 author = "Ming Zhang and contributors"
 
+[library]
+source-dir = "modules"
+
 [[executable]]
 name = "2damrhistss"
+source-dir = "programs"
 
 [[executable]]
 name = "maggrid"
+source-dir = "programs"
 
 [[executable]]
 name = "mapb2s"
+source-dir = "programs"
 
 [[executable]]
 name = "combiner"
+source-dir = "programs"
 
 [[executable]]
 name = "seedgen"
+source-dir = "programs"
 
 [[executable]]
 name = "sim3d"
+source-dir = "programs"
 
 [[executable]]
 name = "shockfront"
+source-dir = "programs"
 
-[extras.ford]
+[extra.ford]
 project = "SEP-Stochastic"
 summary = "TODO"
 version = "0.0.0"
 author = "Ming Zhang and contributors"
+src_dir = ["./modules", "./programs"]
 source = false
 incl_src = false
 print_creation_date = true
