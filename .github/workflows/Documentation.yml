@@ -15,6 +15,7 @@ jobs:
         uses: ResearchSoftwareActions/ford-build@v1.0
         with:
           project_file: README.md
+          output_dir: doc
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
