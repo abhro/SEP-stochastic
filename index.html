@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="TODO">
+    <meta name="author" content="Ming Zhang and contributors" >
+    <link rel="icon" href="./favicon.png">
+
+    <title> SEP-Stochastic </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="./css/fontawesome.min.css" rel="stylesheet">
+    <link href="./css/brands.min.css" rel="stylesheet">
+    <link href="./css/regular.min.css" rel="stylesheet">
+    <link href="./css/solid.min.css" rel="stylesheet">
+    <link href="./css/v4-font-face.min.css" rel="stylesheet">
+    <link href="./css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="./css/local.css" rel="stylesheet">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <script src="./js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="./index.html">SEP-Stochastic <small>0.0.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/namelists.html">Namelists</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="./search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <!-- Main component for a primary marketing message or call to action -->
+    <div class="p-5 mb-4 bg-light border rounded-3" id="jumbotron">
+      <p>TODO</p>
+      </p>
+    </div>
+
+      <div class="row" id='text'>
+        <div class=col-md-8>
+          <h1>SEP-Stochastic</h1>
+          <h1>SEP-stochastic</h1>
+<p>Fortran numerical integrator for SEP stochastic model</p>
+<h2>Setting up virtual env</h2>
+<p>To set up virtual env</p>
+<div class="codehilite"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">python</span><span class="o">/</span><span class="mf">3.9</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">$</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">virtualenv</span>
+<span class="o">$</span><span class="w"> </span><span class="c1"># if venv-python doesn&#39;t already exist</span>
+<span class="o">$</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">virtualenv</span><span class="w"> </span><span class="n">venv</span><span class="o">-</span><span class="n">python</span>
+<span class="o">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">venv</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">activate</span>
+</code></pre></div>
+
+<h2>Compiling</h2>
+<p>To compile, run <code>make all</code>, or just <code>make</code>. If there are some dependency errors,
+you can use <code>make modules</code> to compile the modules first before redoing <code>make all</code>.
+If errors still persist, use <code>make clean</code> to start from scratch. Current
+versions of Fortran compilers don't support automatic dependency generation, so
+some dependencies, like for mtrx.o and dxx.o have to be defined manually.</p>
+<p>To compile using GFortran/GCC, set the environment variable <code>$toolset</code> to <code>gcc</code>.
+By default the Makefile will assme a PGI toolset is being used.</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">toolset</span><span class="o">=</span>gcc
+$<span class="w"> </span>make<span class="w"> </span>clean
+$<span class="w"> </span>make<span class="w"> </span>modules
+$<span class="w"> </span>make<span class="w"> </span>all
+</code></pre></div>
+
+<h2>Running</h2>
+<p>INVALID. Does not work for the python script.</p>
+<p>First, run <code>export SHTC_URL=&lt;url from GONG here&gt;</code> to set the environment
+variable to the URL, the URL from which the spherical harmonic transform
+coefficients will be downloaded. Then, run <code>./master-runner.sh</code> and sit back and
+wait for it to email you. That is,</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">SHTC_URL</span><span class="o">=</span>https://gong.nso.edu/data/magmap/QR/bqc/202004/mrbqc200421/mrbqc200421t0054c2230_348.dat
+$<span class="w"> </span>./master-runner.sh
+</code></pre></div>
+
+<p>This can also be combined into one line by setting the variable in the same line
+right before the script invocation, like so:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nv">SHTC_URL</span><span class="o">=</span>https://gong.nso.edu/data/magmap/QR/bqc/202004/mrbqc200421/mrbqc200421t0054c2230_348.dat<span class="w"> </span>./master-runner.sh
+</code></pre></div>
+
+<p>where a SHTC file from 2020 April is used as an example.</p>
+<p>If you are Florida Tech faculty/staff, you will want to change the line
+containing the variable <code>$MAIL_ADDRESS</code> from</p>
+<div class="codehilite"><pre><span></span><code><span class="n">MAIL_ADDRESS</span><span class="o">=</span><span class="ss">&quot;$USER@my.fit.edu&quot;</span>
+</code></pre></div>
+
+<p>to</p>
+<div class="codehilite"><pre><span></span><code><span class="n">MAIL_ADDRESS</span><span class="o">=</span><span class="ss">&quot;$USER@fit.edu&quot;</span>
+</code></pre></div>
+
+<p>i.e., remove the 'my.' domain, to ensure you receive emails. This <em>could</em> be
+automated by checking if <code>$HOME</code> contains <code>/udrive/faculty</code>, <code>/udrive/student</code>,
+or <code>/udrive/staff</code>, but the author is not familiar enough with the email address
+protocols of Florida Tech to reliably automate that in a future-proof fashion.</p>
+<h2>Cleaning</h2>
+<p>There are three cleaning targets within the Makefile, <code>clean</code>, <code>clean-logs</code>, and
+<code>clean-objs</code>. <code>make clean</code> will remove all object files, module files, and
+compiled executables. <code>make clean-objs</code> will only remove object (.o) files,
+leaving the executables and module (.mod) files intact. Finally,
+<code>make clean-logs</code> will only remove the output and error files within the logs/
+directory.</p>
+<h2>TODO</h2>
+<ul>
+<li>[ ] Get rid of control through environment variables and implement a conf file
+  reader, a la <a href="https://github.com/szaghi/FiNeR">Finer</a></li>
+<li>[ ] Figure out what 2damrhistss is trying to do, and redirect I/O accordingly.</li>
+</ul>
+        </div>
+          <div class="col-md-4">
+            <div class="card card-body bg-light">
+              <h2 class="card-title">Developer Info</h2>
+              <h4 class="card-text">Ming Zhang and contributors</h4>
+              <p class="card-text"></p>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+          <hr>
+          <div class="col-xs-6 col-sm-4">
+            <div>
+              <h3>Modules</h3>
+              <ul><li><a href='module/cme_cross.html'>cme_cross</a></li><li><a href='module/datetime_utils.html'>datetime_utils</a></li><li><a href='module/dmumu.html'>dmumu</a></li><li><a href='module/dxx.html'>dxx</a></li><li><a href='module/epv.html'>epv</a></li><li><a href='module/fb.html'>fb</a></li><li><a href='module/file_op.html'>file_op</a></li><li><a href='module/loadptcl.html'>loadptcl</a></li><li><a href='module/mtrx.html'>mtrx</a></li><li><a href='module/param.html'>param</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <div>
+              <h3>Procedures</h3>
+              <ul><li><a href='proc/beta2gamma.html'>beta2gamma</a></li><li><a href='proc/beta2p.html'>beta2p</a></li><li><a href='proc/caldate.html'>caldate</a></li><li><a href='proc/cartesian2spherical.html'>cartesian2spherical</a></li><li><a href='proc/cofdu.html'>cofdu</a></li><li><a href='proc/cofm.html'>cofm</a></li><li><a href='proc/compress.html'>compress</a></li><li><a href='proc/dmrtx.html'>dmrtx</a></li><li><a href='proc/dmumuah.html'>dmumuAH</a></li><li><a href='proc/dmumubk.html'>dmumuBK</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <div>
+              <h3>Derived Types</h3>
+              <ul><li><a href='type/gregorian_date.html'>gregorian_date</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/types.html"><em>All derived types&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              SEP-Stochastic
+ was developed by Ming Zhang and contributors<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-06-27 22:35 +0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

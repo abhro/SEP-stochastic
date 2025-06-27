@@ -1,0 +1,732 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="TODO">
+    <meta name="author" content="Ming Zhang and contributors" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>prepareptcl &ndash; SEP-Stochastic</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">SEP-Stochastic <small>0.0.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/namelists.html">Namelists</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>prepareptcl
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.1% of total for procedures.">31 statements</a>
+            </li>
+
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../module/loadptcl.html'>loadptcl</a></li>
+            <li class="breadcrumb-item active" aria-current="page">prepareptcl</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#common-0"
+         aria-expanded="false" aria-controls="common-0">
+         <h4 class="card-header bg-primary text-white">Common Blocks</h4>
+      </a>
+      <div id="common-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../proc/prepareptcl.html#common-dir~14">dir</a>
+            <a class="list-group-item" href="../proc/prepareptcl.html#common-specie~7">specie</a>
+            <a class="list-group-item" href="../proc/prepareptcl.html#common-srcmod~6">srcmod</a>
+            <a class="list-group-item" href="../proc/prepareptcl.html#common-tmprm~7">tmprm</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine prepareptcl(tf, rf, ef, rmuf, np, nf)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tf~3"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>tf</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rf~3"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>rf</strong>(:,:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ef~3"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>ef</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rmuf~3"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out),</td>
+              <td></td>            <td>
+              allocatable
+            </td>
+            <td>::</td>
+            <td><strong>rmuf</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-np~3"></span>
+              integer
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>np</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nf~4"></span>
+              integer
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nf</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+
+    <section>
+      <h2>Common Blocks</h2>
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-dir~14"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/read_dmumudg.html#common-dir~18">read_dmumuDG</a>
+      (subroutine)<br><a href="../proc/read_dmumuah.html#common-dir~20">read_dmumuAH</a>
+      (subroutine)<br><a href="../proc/read_dmumubk.html#common-dir~22">read_dmumuBK</a>
+      (subroutine)<br><a href="../proc/preparefb.html#common-dir~12">preparefb</a>
+      (subroutine)<br><a href="../proc/read_param.html#common-dir~2">read_param</a>
+      (subroutine)<br><a href="../proc/read_dxx.html#common-dir~8">read_dxx</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-dir~4">preparecme</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-dir~6">sim3d</a>
+      (program)<br><a href="../program/sim3d_em.html#common-dir~10">sim3d_em</a>
+      (program)<br><a href="../program/shockfront.html#common-dir~16">shockfront</a>
+      (program)<br>">
+           common /dir/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dir~13"></span>
+              character(len=256)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dir</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-specie~7"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/e2p.html#common-specie~11">e2p</a>
+      (function)<br><a href="../proc/rp2e.html#common-specie~12">rp2e</a>
+      (function)<br><a href="../proc/rp2beta.html#common-specie~13">rp2beta</a>
+      (function)<br><a href="../proc/beta2p.html#common-specie~14">beta2p</a>
+      (function)<br><a href="../proc/fs0.html#common-specie~6">fs0</a>
+      (function)<br><a href="../proc/vfunc~2.html#common-specie~10">vfunc</a>
+      (subroutine)<br><a href="../program/arriv_time.html#common-specie">arriv_time</a>
+      (program)<br><a href="../proc/walk3d.html#common-specie~3">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-specie~2">sim3d</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-specie~5">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-specie~4">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-specie~9">walk3d</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-specie~8">shockfront</a>
+      (program)<br>">
+           common /specie/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rnm~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rnm</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rnz~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rnz</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-srcmod~6"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/preparefb.html#common-srcmod~5">preparefb</a>
+      (subroutine)<br><a href="../proc/f0mod.html#common-srcmod~9">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-srcmod~10">split</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-srcmod~11">vfunc</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-srcmod~2">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-srcmod">sim3d</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-srcmod~4">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-srcmod~3">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-srcmod~8">walk3d</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-srcmod~7">shockfront</a>
+      (program)<br>">
+           common /srcmod/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ap~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ap</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-gp~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gp</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-h0~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>h0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scanw~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scanw</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sp~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sp</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sp0~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sp0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-trgtfs~6"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>trgtfs</strong>(4)</td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-tmprm~7"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/split.html#common-tmprm~11">split</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-tmprm">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-tmprm~2">inorout</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-tmprm~4">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-tmprm~3">sim3d</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-tmprm~6">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-tmprm~5">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-tmprm~9">walk3d</a>
+      (subroutine)<br><a href="../proc/sksurface.html#common-tmprm~10">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-tmprm~8">shockfront</a>
+      (program)<br>">
+           common /tmprm/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dmapjul~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dmapjul</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t0org~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t0org</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tcme0~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tcme0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tdl~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tdl</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-te~7"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>te</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+    <script>
+      $(function () {
+      $('[data-bs-toggle="popover"]').popover()
+      })
+    </script>
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              SEP-Stochastic
+ was developed by Ming Zhang and contributors<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-06-27 22:35 +0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
