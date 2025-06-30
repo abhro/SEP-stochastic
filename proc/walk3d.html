@@ -91,7 +91,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 5.9% of total for procedures.">167 statements</a>
+                 title=" 6.5% of total for procedures.">182 statements</a>
             </li>
 
         </ul>
@@ -99,7 +99,7 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../program/sim3d.html'>sim3d</a></li>
+                <li class="breadcrumb-item"><a href='../program/shockfront.html'>shockfront</a></li>
             <li class="breadcrumb-item active" aria-current="page">walk3d</li>
           </ol>
         </nav>
@@ -127,13 +127,13 @@
       </a>
       <div id="common-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../proc/walk3d.html#common-bpark~5">bpark</a>
-            <a class="list-group-item" href="../proc/walk3d.html#common-fbcnst~2">fbcnst</a>
-            <a class="list-group-item" href="../proc/walk3d.html#common-ndpdt~6">ndpdt</a>
-            <a class="list-group-item" href="../proc/walk3d.html#common-nlambdaconst~4">nlambdaconst</a>
-            <a class="list-group-item" href="../proc/walk3d.html#common-specie~3">specie</a>
-            <a class="list-group-item" href="../proc/walk3d.html#common-srcmod~2">srcmod</a>
-            <a class="list-group-item" href="../proc/walk3d.html#common-tmprm~4">tmprm</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-bpark~12">bpark</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-fbcnst~4">fbcnst</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-ndpdt~8">ndpdt</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-nlambdaconst~6">nlambdaconst</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-specie~6">specie</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-srcmod~7">srcmod</a>
+            <a class="list-group-item" href="../proc/walk3d.html#common-tmprm~6">tmprm</a>
         </div>
       </div>
     </div>
@@ -166,8 +166,26 @@
     <div class="col-md-9" id='text'>
     <h2> subroutine walk3d(iseed, rp0, rpb, ck, fs, t0, t, tsp, ns, dnsk0, bv0, nsplvl)  
 </h2>
-    
+        <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='../module/param.html'>param</a></li>
+                  <li class="list-inline-item"><a href='../module/fb.html'>fb</a></li>
+              </ul>
+            </li>
+        </ul>
+      </div>
+    </div>
 
+
+    <p>random walk of energetic particles in magnetic
+variables: t, xp(5)
+- x - spatial coordinators
+- p - momentum
+- pa - pitch angle</p>
 
 
     <h3>Arguments</h3>
@@ -183,10 +201,10 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-iseed~3"></span>
-              integer,
+              <span class="anchor" id="variable-iseed~4"></span>
+              integer
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -199,9 +217,9 @@
         <tr>
             <td>
               <span class="anchor" id="variable-rp0~2"></span>
-              real(kind=real64),
+              real(kind=real64)
             </td>
-<td>intent(in)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -213,10 +231,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rpb~2"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-rpb~4"></span>
+              real(kind=real64)
             </td>
-<td>intent(out)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -228,10 +246,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ck~2"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-ck~3"></span>
+              real(kind=real64)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -243,10 +261,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-fs~2"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-fs~3"></span>
+              real(kind=real64)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -258,10 +276,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-t0~2"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-t0~3"></span>
+              real(kind=real64)
             </td>
-<td>intent(in)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -273,10 +291,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-t~4"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-t~7"></span>
+              real(kind=real64)
             </td>
-<td>intent(out)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -288,10 +306,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tsp~2"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-tsp~3"></span>
+              real(kind=real64)
             </td>
-<td>intent(in)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -303,10 +321,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ns~2"></span>
-              integer,
+              <span class="anchor" id="variable-ns~4"></span>
+              integer
             </td>
-<td>intent(out)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -319,9 +337,9 @@
         <tr>
             <td>
               <span class="anchor" id="variable-dnsk0~3"></span>
-              real(kind=real64),
+              real(kind=real64)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -333,10 +351,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-bv0~2"></span>
-              real(kind=real64),
+              <span class="anchor" id="variable-bv0~4"></span>
+              real(kind=real64)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -348,10 +366,10 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsplvl~2"></span>
-              integer,
+              <span class="anchor" id="variable-nsplvl~3"></span>
+              integer
             </td>
-<td>intent(in)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
@@ -370,7 +388,7 @@
       <h2>Common Blocks</h2>
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-bpark~5"></span>
+      <span class="anchor" id="common-bpark~12"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
@@ -378,21 +396,21 @@
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
            data-bs-content="<a href="../proc/read_param.html#common-bpark">read_param</a>
-      (subroutine)<br><a href="../proc/cofm.html#common-bpark~6">cofm</a>
-      (subroutine)<br><a href="../proc/solarwind1.html#common-bpark~16">solarwind1</a>
-      (function)<br><a href="../proc/f0mod.html#common-bpark~12">f0mod</a>
-      (subroutine)<br><a href="../proc/split.html#common-bpark~13">split</a>
-      (subroutine)<br><a href="../proc/vfunc~2.html#common-bpark~14">vfunc</a>
-      (subroutine)<br><a href="../proc/solarwind.html#common-bpark~15">solarwind</a>
-      (subroutine)<br><a href="../proc/drvbmag.html#common-bpark~17">drvbmag</a>
-      (subroutine)<br><a href="../proc/preparecme.html#common-bpark~2">preparecme</a>
-      (subroutine)<br><a href="../proc/inorout.html#common-bpark~3">inorout</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-bpark~4">sim3d</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-bpark~8">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d_em.html#common-bpark~7">sim3d_em</a>
-      (program)<br><a href="../proc/walk3d~3.html#common-bpark~10">walk3d</a>
-      (subroutine)<br><a href="../proc/sksurface.html#common-bpark~11">sksurface</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-bpark~9">shockfront</a>
+      (subroutine)<br><a href="../proc/cofm.html#common-bpark~2">cofm</a>
+      (subroutine)<br><a href="../proc/solarwind1.html#common-bpark~9">solarwind1</a>
+      (function)<br><a href="../proc/f0mod.html#common-bpark~5">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-bpark~6">split</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-bpark~7">vfunc</a>
+      (subroutine)<br><a href="../proc/solarwind.html#common-bpark~8">solarwind</a>
+      (subroutine)<br><a href="../proc/drvbmag.html#common-bpark~10">drvbmag</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-bpark~3">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-bpark~4">inorout</a>
+      (subroutine)<br><a href="../proc/sksurface.html#common-bpark~13">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-bpark~11">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-bpark~15">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-bpark~14">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-bpark~17">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-bpark~16">sim3d</a>
       (program)<br>">
            common /bpark/        </a>
         
@@ -412,7 +430,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-b1au~5"></span>
+              <span class="anchor" id="variable-b1au~12"></span>
               real(kind=real64)
             </td>
             <td>
@@ -428,7 +446,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-densw0~5"></span>
+              <span class="anchor" id="variable-densw0~12"></span>
               real(kind=real64)
             </td>
             <td>
@@ -444,7 +462,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-facip~5"></span>
+              <span class="anchor" id="variable-facip~12"></span>
               real(kind=real64)
             </td>
             <td>
@@ -460,7 +478,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-k4ok2~5"></span>
+              <span class="anchor" id="variable-k4ok2~13"></span>
               real(kind=real64)
             </td>
             <td>
@@ -476,7 +494,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-k6ok2~5"></span>
+              <span class="anchor" id="variable-k6ok2~13"></span>
               real(kind=real64)
             </td>
             <td>
@@ -492,7 +510,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-omega~5"></span>
+              <span class="anchor" id="variable-omega~13"></span>
               real(kind=real64)
             </td>
             <td>
@@ -508,7 +526,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-vom~5"></span>
+              <span class="anchor" id="variable-vom~12"></span>
               real(kind=real64)
             </td>
             <td>
@@ -524,7 +542,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-vsw~5"></span>
+              <span class="anchor" id="variable-vsw~13"></span>
               real(kind=real64)
             </td>
             <td>
@@ -546,20 +564,20 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-fbcnst~2"></span>
+      <span class="anchor" id="common-fbcnst~4"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/preparefb.html#common-fbcnst~5">preparefb</a>
-      (subroutine)<br><a href="../proc/f0mod.html#common-fbcnst~8">f0mod</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-fbcnst">sim3d</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-fbcnst~4">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d_em.html#common-fbcnst~3">sim3d_em</a>
-      (program)<br><a href="../proc/walk3d~3.html#common-fbcnst~7">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-fbcnst~6">shockfront</a>
+           data-bs-content="<a href="../proc/preparefb.html#common-fbcnst">preparefb</a>
+      (subroutine)<br><a href="../proc/f0mod.html#common-fbcnst~2">f0mod</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-fbcnst~3">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-fbcnst~6">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-fbcnst~5">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-fbcnst~8">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-fbcnst~7">sim3d</a>
       (program)<br>">
            common /fbcnst/        </a>
         
@@ -579,7 +597,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-deltat~2"></span>
+              <span class="anchor" id="variable-deltat~4"></span>
               real(kind=real64)
             </td>
             <td>
@@ -595,7 +613,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nfbconst~2"></span>
+              <span class="anchor" id="variable-nfbconst~4"></span>
               integer
             </td>
             <td>
@@ -611,7 +629,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rb0~2"></span>
+              <span class="anchor" id="variable-rb0~5"></span>
               real(kind=real64)
             </td>
             <td>
@@ -627,7 +645,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rk~2"></span>
+              <span class="anchor" id="variable-rk~4"></span>
               real(kind=real64)
             </td>
             <td>
@@ -643,7 +661,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rmax~2"></span>
+              <span class="anchor" id="variable-rmax~5"></span>
               real(kind=real64)
             </td>
             <td>
@@ -659,7 +677,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tc~2"></span>
+              <span class="anchor" id="variable-tc~4"></span>
               real(kind=real64)
             </td>
             <td>
@@ -675,7 +693,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tl~2"></span>
+              <span class="anchor" id="variable-tl~4"></span>
               real(kind=real64)
             </td>
             <td>
@@ -691,7 +709,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tmodel0~2"></span>
+              <span class="anchor" id="variable-tmodel0~4"></span>
               real(kind=real64)
             </td>
             <td>
@@ -713,7 +731,7 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-ndpdt~6"></span>
+      <span class="anchor" id="common-ndpdt~8"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
@@ -721,12 +739,12 @@
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
            data-bs-content="<a href="../proc/read_param.html#common-ndpdt~2">read_param</a>
-      (subroutine)<br><a href="../proc/split.html#common-ndpdt~16">split</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-ndpdt~4">sim3d</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-ndpdt~10">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d_em.html#common-ndpdt~8">sim3d_em</a>
-      (program)<br><a href="../proc/walk3d~3.html#common-ndpdt~14">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-ndpdt~12">shockfront</a>
+      (subroutine)<br><a href="../proc/split.html#common-ndpdt~4">split</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-ndpdt~6">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-ndpdt~12">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-ndpdt~10">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-ndpdt~16">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-ndpdt~14">sim3d</a>
       (program)<br>">
            common /ndpdt/        </a>
         
@@ -746,7 +764,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-ndpdt~5"></span>
+              <span class="anchor" id="variable-ndpdt~7"></span>
               integer
             </td>
             <td>
@@ -768,7 +786,7 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-nlambdaconst~4"></span>
+      <span class="anchor" id="common-nlambdaconst~6"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
@@ -776,9 +794,9 @@
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
            data-bs-content="<a href="../proc/read_param.html#common-nlambdaconst~2">read_param</a>
-      (subroutine)<br><a href="../proc/split.html#common-nlambdaconst~10">split</a>
-      (subroutine)<br><a href="../proc/walk3d~2.html#common-nlambdaconst~6">walk3d</a>
-      (subroutine)<br><a href="../proc/walk3d~3.html#common-nlambdaconst~8">walk3d</a>
+      (subroutine)<br><a href="../proc/split.html#common-nlambdaconst~4">split</a>
+      (subroutine)<br><a href="../proc/walk3d~2.html#common-nlambdaconst~8">walk3d</a>
+      (subroutine)<br><a href="../proc/walk3d~3.html#common-nlambdaconst~10">walk3d</a>
       (subroutine)<br>">
            common /nlambdaconst/        </a>
         
@@ -798,7 +816,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-nlambdaconst~3"></span>
+              <span class="anchor" id="variable-nlambdaconst~5"></span>
               integer
             </td>
             <td>
@@ -820,7 +838,7 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-specie~3"></span>
+      <span class="anchor" id="common-specie~6"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
@@ -831,15 +849,15 @@
       (function)<br><a href="../proc/rp2e.html#common-specie~12">rp2e</a>
       (function)<br><a href="../proc/rp2beta.html#common-specie~13">rp2beta</a>
       (function)<br><a href="../proc/beta2p.html#common-specie~14">beta2p</a>
-      (function)<br><a href="../proc/fs0.html#common-specie~6">fs0</a>
-      (function)<br><a href="../proc/prepareptcl.html#common-specie~7">prepareptcl</a>
-      (subroutine)<br><a href="../proc/vfunc~2.html#common-specie~10">vfunc</a>
+      (function)<br><a href="../proc/fs0.html#common-specie~3">fs0</a>
+      (function)<br><a href="../proc/prepareptcl.html#common-specie~2">prepareptcl</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-specie~4">vfunc</a>
       (subroutine)<br><a href="../program/arriv_time.html#common-specie">arriv_time</a>
-      (program)<br><a href="../program/sim3d.html#common-specie~2">sim3d</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-specie~5">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d_em.html#common-specie~4">sim3d_em</a>
-      (program)<br><a href="../proc/walk3d~3.html#common-specie~9">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-specie~8">shockfront</a>
+      (program)<br><a href="../program/shockfront.html#common-specie~5">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-specie~8">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-specie~7">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-specie~10">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-specie~9">sim3d</a>
       (program)<br>">
            common /specie/        </a>
         
@@ -859,7 +877,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-rnm~3"></span>
+              <span class="anchor" id="variable-rnm~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -875,7 +893,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rnz~3"></span>
+              <span class="anchor" id="variable-rnz~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -897,23 +915,23 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-srcmod~2"></span>
+      <span class="anchor" id="common-srcmod~7"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/preparefb.html#common-srcmod~5">preparefb</a>
-      (subroutine)<br><a href="../proc/prepareptcl.html#common-srcmod~6">prepareptcl</a>
-      (subroutine)<br><a href="../proc/f0mod.html#common-srcmod~9">f0mod</a>
-      (subroutine)<br><a href="../proc/split.html#common-srcmod~10">split</a>
-      (subroutine)<br><a href="../proc/vfunc~2.html#common-srcmod~11">vfunc</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-srcmod">sim3d</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-srcmod~4">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d_em.html#common-srcmod~3">sim3d_em</a>
-      (program)<br><a href="../proc/walk3d~3.html#common-srcmod~8">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-srcmod~7">shockfront</a>
+           data-bs-content="<a href="../proc/preparefb.html#common-srcmod~2">preparefb</a>
+      (subroutine)<br><a href="../proc/prepareptcl.html#common-srcmod">prepareptcl</a>
+      (subroutine)<br><a href="../proc/f0mod.html#common-srcmod~3">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-srcmod~4">split</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-srcmod~5">vfunc</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-srcmod~6">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-srcmod~9">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-srcmod~8">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-srcmod~11">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-srcmod~10">sim3d</a>
       (program)<br>">
            common /srcmod/        </a>
         
@@ -933,7 +951,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-ap~2"></span>
+              <span class="anchor" id="variable-ap~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -949,7 +967,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-gp~2"></span>
+              <span class="anchor" id="variable-gp~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -965,7 +983,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-h0~2"></span>
+              <span class="anchor" id="variable-h0~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -981,7 +999,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-scanw~2"></span>
+              <span class="anchor" id="variable-scanw~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -997,7 +1015,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sp~2"></span>
+              <span class="anchor" id="variable-sp~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1013,7 +1031,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sp0~2"></span>
+              <span class="anchor" id="variable-sp0~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1029,7 +1047,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-trgtfs~2"></span>
+              <span class="anchor" id="variable-trgtfs~7"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1051,23 +1069,23 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-tmprm~4"></span>
+      <span class="anchor" id="common-tmprm~6"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/prepareptcl.html#common-tmprm~7">prepareptcl</a>
-      (subroutine)<br><a href="../proc/split.html#common-tmprm~11">split</a>
-      (subroutine)<br><a href="../proc/preparecme.html#common-tmprm">preparecme</a>
-      (subroutine)<br><a href="../proc/inorout.html#common-tmprm~2">inorout</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-tmprm~3">sim3d</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-tmprm~6">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d_em.html#common-tmprm~5">sim3d_em</a>
-      (program)<br><a href="../proc/walk3d~3.html#common-tmprm~9">walk3d</a>
-      (subroutine)<br><a href="../proc/sksurface.html#common-tmprm~10">sksurface</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-tmprm~8">shockfront</a>
+           data-bs-content="<a href="../proc/prepareptcl.html#common-tmprm">prepareptcl</a>
+      (subroutine)<br><a href="../proc/split.html#common-tmprm~4">split</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-tmprm~2">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-tmprm~3">inorout</a>
+      (subroutine)<br><a href="../proc/sksurface.html#common-tmprm~7">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-tmprm~5">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-tmprm~9">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-tmprm~8">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-tmprm~11">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-tmprm~10">sim3d</a>
       (program)<br>">
            common /tmprm/        </a>
         
@@ -1087,7 +1105,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-dmapjul~4"></span>
+              <span class="anchor" id="variable-dmapjul~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1103,7 +1121,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-t0org~4"></span>
+              <span class="anchor" id="variable-t0org~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1119,7 +1137,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tcme0~4"></span>
+              <span class="anchor" id="variable-tcme0~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1135,7 +1153,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tdl~4"></span>
+              <span class="anchor" id="variable-tdl~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1151,7 +1169,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-te~4"></span>
+              <span class="anchor" id="variable-te~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1207,7 +1225,7 @@
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-06-27 22:35 +0000             </p>
+ on 2025-06-30 14:57 +0000             </p>
           </div>
         </div>
         <br>
