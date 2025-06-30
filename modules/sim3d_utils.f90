@@ -459,12 +459,7 @@ contains
     !   focusing
     dpadt = -vpcl * dbbds * (1 - pa*pa) / 2.0
     !   cooling
-    bbgv = 0.0
-    do i = 1, 3
-      do j = 1, 3
-        bbgv = bv(i)/bm*gvpl(i,j)*bv(j)/bm + bbgv
-      end do
-    end do
+    bbgv = dot_product(bv, matmul(gvpl, bv)) / bm**2
     divv = gvpl(1,1)+gvpl(2,2)+gvpl(3,3)
     !divv1 = 2*vpl(1)/r(1) + gvpl(1,1)  ! for test
     dpadt = dpadt + pa * (1-pa*pa) / 2 * (divv-3*bbgv)
