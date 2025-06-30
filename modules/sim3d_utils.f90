@@ -121,8 +121,11 @@ contains
 
 
   real(kind=real64) function solarwindtemp(r) result(temp)
+    !! Solar wind temperature at position vector `r`
+    !!
+    !! Uses empirical model in the corona from Withbroe (ApJ 325,442,1988) 10.1086/166015
+
     real(kind=real64), intent(in)  :: r(3)
-    !  empirical model in the corona from Withbroe (ApJ 325,442,1988) 10.1086/166015
 
     if (r(1) > 10.0) temp = 1.4d6 * (10/r(1))**1.3333
 
@@ -135,9 +138,9 @@ contains
   end function
 
 
-  !   use bisection to search for root of shock adiabatic equation
-  !   calculate shock compression ratio of oblique MHD shock
   function compress(amach, smach, ob) result(rsh)
+    !!   use bisection to search for root of shock adiabatic equation
+    !!   calculate shock compression ratio of oblique MHD shock
     real(kind=real64), intent(in) :: amach, smach, ob
     real(kind=real64)             :: rsh(3)
     !real(kind=real64)             :: xr, y1, y2, xmin, xmax, froot
@@ -313,6 +316,7 @@ contains
   end subroutine
 
   subroutine vfunc(t, xpk, dxpkdt, du, gxw2, gxw3, bv0, densw, vpl, gper, b1s)
+    !! Velocity function
     real(kind=real64), intent(in) :: t, xpk(6)
     real(kind=real64), intent(out) :: dxpkdt(6)
     real(kind=real64)             :: du
@@ -423,12 +427,12 @@ contains
       sinmu = sqrt(sinmu)
     end if
     rgmu2 = rg1 * p / bm * sinmu * 1.414 !sqrt(2),linear; 2,step
-    if (dcs > rgmu2) then !regular drift
+    if (dcs > rgmu2) then     ! regular drift
       culpar = dot_product(bv(1:3), cvtu(1:3))/bm/bm*bv
       culper = cvtu - culpar
       vd = rg1 * p * vpcl / bm * (pa*pa*culper/bm &
                                   + (1-pa*pa)/2/bm*culpar + (1+pa*pa)/2*bxgb2)
-    else ! current sheet drift (square delta function)
+    else                      ! current sheet drift (square delta function)
       vd = -vpcl * sinmu / 2.828 * bxgb2 * dcs
     end if
     if (rnz < 0) vd = -vd
@@ -496,7 +500,8 @@ contains
     !!     and its gradient
     !!    in spherical coordinate system
     real(kind=real64), intent(in)  :: r(3)
-    real(kind=real64), intent(out) :: vpl(3), gvpl(3,3), densw
+    real(kind=real64), intent(out) :: vpl(3), gvpl(3,3)
+    real(kind=real64), intent(out) :: densw   !! solar wind density
     !     use leBalnc(1998) model
     real(kind=real64)              :: densw0, vsw, k4ok2, k6ok2
     real(kind=real64)              :: omega, b1au, vom, facip
