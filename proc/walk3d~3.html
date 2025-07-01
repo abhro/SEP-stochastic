@@ -91,7 +91,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 5.9% of total for procedures.">167 statements</a>
+                 title=" 6.5% of total for procedures.">182 statements</a>
             </li>
 
         </ul>
@@ -99,7 +99,7 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../program/sim3d_em.html'>sim3d_em</a></li>
+                <li class="breadcrumb-item"><a href='../program/shockfront.html'>shockfront</a></li>
             <li class="breadcrumb-item active" aria-current="page">walk3d</li>
           </ol>
         </nav>
@@ -131,10 +131,9 @@
             <a class="list-group-item" href="../proc/walk3d~3.html#common-fbcnst~6">fbcnst</a>
             <a class="list-group-item" href="../proc/walk3d~3.html#common-ndpdt~12">ndpdt</a>
             <a class="list-group-item" href="../proc/walk3d~3.html#common-nlambdaconst~6">nlambdaconst</a>
-            <a class="list-group-item" href="../proc/walk3d~3.html#common-seed~2">seed</a>
-            <a class="list-group-item" href="../proc/walk3d~3.html#common-specie~11">specie</a>
+            <a class="list-group-item" href="../proc/walk3d~3.html#common-specie~6">specie</a>
             <a class="list-group-item" href="../proc/walk3d~3.html#common-srcmod~6">srcmod</a>
-            <a class="list-group-item" href="../proc/walk3d~3.html#common-tmprm~9">tmprm</a>
+            <a class="list-group-item" href="../proc/walk3d~3.html#common-tmprm~8">tmprm</a>
         </div>
       </div>
     </div>
@@ -165,7 +164,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2> subroutine walk3d(iseed, rp0, rpb, ck, fs, t0, t, tsp, ns, ino, bv0, nsplvl)  
+    <h2> subroutine walk3d(iseed, rp0, rpb, ck, fs, t0, t, tsp, ns, dnsk0, bv0, nsplvl)  
 </h2>
         <div class="card mb-4">
       <h3 class="card-header card-title bg-light">Uses</h3>
@@ -182,6 +181,11 @@
     </div>
 
 
+    <p>random walk of energetic particles in magnetic
+variables: t, xp(5)
+- x - spatial coordinators
+- p - momentum
+- pa - pitch angle</p>
 
 
     <h3>Arguments</h3>
@@ -287,7 +291,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-t~10"></span>
+              <span class="anchor" id="variable-t~8"></span>
               real(kind=real64)
             </td>
 <td></td>
@@ -332,15 +336,15 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ino~2"></span>
-              integer
+              <span class="anchor" id="variable-dnsk0~5"></span>
+              real(kind=real64)
             </td>
 <td></td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>ino</strong></td>
+            <td><strong>dnsk0</strong></td>
             <td>
                 
             </td>
@@ -391,22 +395,22 @@
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/read_param.html#common-bpark~10">read_param</a>
-      (subroutine)<br><a href="../proc/cofm.html#common-bpark~17">cofm</a>
-      (subroutine)<br><a href="../proc/solarwind1.html#common-bpark~15">solarwind1</a>
-      (function)<br><a href="../proc/f0mod.html#common-bpark~11">f0mod</a>
-      (subroutine)<br><a href="../proc/split.html#common-bpark~12">split</a>
-      (subroutine)<br><a href="../proc/vfunc~2.html#common-bpark~13">vfunc</a>
-      (subroutine)<br><a href="../proc/solarwind.html#common-bpark~14">solarwind</a>
-      (subroutine)<br><a href="../proc/drvbmag.html#common-bpark~16">drvbmag</a>
-      (subroutine)<br><a href="../proc/preparecme.html#common-bpark~4">preparecme</a>
-      (subroutine)<br><a href="../proc/inorout.html#common-bpark~5">inorout</a>
-      (subroutine)<br><a href="../proc/walk3d.html#common-bpark~2">walk3d</a>
-      (subroutine)<br><a href="../proc/sksurface.html#common-bpark~3">sksurface</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-bpark">shockfront</a>
+           data-bs-content="<a href="../proc/read_param.html#common-bpark~11">read_param</a>
+      (subroutine)<br><a href="../proc/cofm.html#common-bpark">cofm</a>
+      (subroutine)<br><a href="../proc/solarwind1.html#common-bpark~16">solarwind1</a>
+      (function)<br><a href="../proc/f0mod.html#common-bpark~12">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-bpark~13">split</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-bpark~14">vfunc</a>
+      (subroutine)<br><a href="../proc/solarwind.html#common-bpark~15">solarwind</a>
+      (subroutine)<br><a href="../proc/drvbmag.html#common-bpark~17">drvbmag</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-bpark~2">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-bpark~3">inorout</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-bpark~5">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-bpark~4">sim3d_em</a>
       (program)<br><a href="../proc/walk3d~2.html#common-bpark~7">walk3d</a>
       (subroutine)<br><a href="../program/sim3d.html#common-bpark~6">sim3d</a>
-      (program)<br><a href="../program/sim3d_em.html#common-bpark~8">sim3d_em</a>
+      (program)<br><a href="../proc/sksurface.html#common-bpark~10">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-bpark~8">shockfront</a>
       (program)<br>">
            common /bpark/        </a>
         
@@ -567,13 +571,13 @@
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/preparefb.html#common-fbcnst~8">preparefb</a>
-      (subroutine)<br><a href="../proc/f0mod.html#common-fbcnst~7">f0mod</a>
+           data-bs-content="<a href="../proc/preparefb.html#common-fbcnst~7">preparefb</a>
+      (subroutine)<br><a href="../proc/f0mod.html#common-fbcnst~8">f0mod</a>
       (subroutine)<br><a href="../proc/walk3d.html#common-fbcnst~2">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-fbcnst">shockfront</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-fbcnst">sim3d_em</a>
       (program)<br><a href="../proc/walk3d~2.html#common-fbcnst~4">walk3d</a>
       (subroutine)<br><a href="../program/sim3d.html#common-fbcnst~3">sim3d</a>
-      (program)<br><a href="../program/sim3d_em.html#common-fbcnst~5">sim3d_em</a>
+      (program)<br><a href="../program/shockfront.html#common-fbcnst~5">shockfront</a>
       (program)<br>">
            common /fbcnst/        </a>
         
@@ -737,10 +741,10 @@
            data-bs-content="<a href="../proc/read_param.html#common-ndpdt~14">read_param</a>
       (subroutine)<br><a href="../proc/split.html#common-ndpdt~16">split</a>
       (subroutine)<br><a href="../proc/walk3d.html#common-ndpdt~4">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-ndpdt~2">shockfront</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-ndpdt~2">sim3d_em</a>
       (program)<br><a href="../proc/walk3d~2.html#common-ndpdt~8">walk3d</a>
       (subroutine)<br><a href="../program/sim3d.html#common-ndpdt~6">sim3d</a>
-      (program)<br><a href="../program/sim3d_em.html#common-ndpdt~10">sim3d_em</a>
+      (program)<br><a href="../program/shockfront.html#common-ndpdt~10">shockfront</a>
       (program)<br>">
            common /ndpdt/        </a>
         
@@ -834,75 +838,26 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-seed~2"></span>
+      <span class="anchor" id="common-specie~6"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../program/sim3d_em.html#common-seed">sim3d_em</a>
-      (program)<br>">
-           common /seed/        </a>
-        
-      </h3>
-    </div>
-    <div class="card-body">
-      
-          <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-<th></th><th scope="col">Initial</th>        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nseeds~4"></span>
-              integer
-            </td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nseeds</strong>(nseedmax)</td>
-                <td></td>
-                <td></td>
-            <td>
-                
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-    </div>
-  </div>
-
-        <div class="card">
-    <div class="card-header codesum">
-      <span class="anchor" id="common-specie~11"></span>
-      <h3>
-        <a href="#"
-           data-bs-toggle="popover"
-           data-bs-html="true"
-           data-bs-trigger="focus"
-           data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/e2p.html#common-specie">e2p</a>
-      (function)<br><a href="../proc/rp2e.html#common-specie~2">rp2e</a>
-      (function)<br><a href="../proc/rp2beta.html#common-specie~3">rp2beta</a>
-      (function)<br><a href="../proc/beta2p.html#common-specie~4">beta2p</a>
-      (function)<br><a href="../proc/fs0.html#common-specie~14">fs0</a>
-      (function)<br><a href="../proc/prepareptcl.html#common-specie~12">prepareptcl</a>
-      (subroutine)<br><a href="../proc/vfunc~2.html#common-specie~13">vfunc</a>
-      (subroutine)<br><a href="../proc/walk3d.html#common-specie~6">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-specie~5">shockfront</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-specie~8">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-specie~7">sim3d</a>
-      (program)<br><a href="../program/arriv_time.html#common-specie~9">arriv_time</a>
-      (program)<br><a href="../program/sim3d_em.html#common-specie~10">sim3d_em</a>
+           data-bs-content="<a href="../proc/e2p.html#common-specie~11">e2p</a>
+      (function)<br><a href="../proc/rp2e.html#common-specie~12">rp2e</a>
+      (function)<br><a href="../proc/rp2beta.html#common-specie~13">rp2beta</a>
+      (function)<br><a href="../proc/beta2p.html#common-specie~14">beta2p</a>
+      (function)<br><a href="../proc/fs0.html#common-specie~7">fs0</a>
+      (function)<br><a href="../proc/prepareptcl.html#common-specie~9">prepareptcl</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-specie~10">vfunc</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-specie~2">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-specie">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-specie~4">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-specie~3">sim3d</a>
+      (program)<br><a href="../program/shockfront.html#common-specie~5">shockfront</a>
+      (program)<br><a href="../program/arriv_time.html#common-specie~8">arriv_time</a>
       (program)<br>">
            common /specie/        </a>
         
@@ -922,7 +877,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-rnm~11"></span>
+              <span class="anchor" id="variable-rnm~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -938,7 +893,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rnz~11"></span>
+              <span class="anchor" id="variable-rnz~6"></span>
               real(kind=real64)
             </td>
             <td>
@@ -967,16 +922,16 @@
            data-bs-html="true"
            data-bs-trigger="focus"
            data-bs-title="Used elsewhere:"
-           data-bs-content="<a href="../proc/preparefb.html#common-srcmod~11">preparefb</a>
-      (subroutine)<br><a href="../proc/prepareptcl.html#common-srcmod~7">prepareptcl</a>
-      (subroutine)<br><a href="../proc/f0mod.html#common-srcmod~8">f0mod</a>
-      (subroutine)<br><a href="../proc/split.html#common-srcmod~9">split</a>
-      (subroutine)<br><a href="../proc/vfunc~2.html#common-srcmod~10">vfunc</a>
+           data-bs-content="<a href="../proc/preparefb.html#common-srcmod~7">preparefb</a>
+      (subroutine)<br><a href="../proc/prepareptcl.html#common-srcmod~8">prepareptcl</a>
+      (subroutine)<br><a href="../proc/f0mod.html#common-srcmod~9">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-srcmod~10">split</a>
+      (subroutine)<br><a href="../proc/vfunc~2.html#common-srcmod~11">vfunc</a>
       (subroutine)<br><a href="../proc/walk3d.html#common-srcmod~2">walk3d</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-srcmod">shockfront</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-srcmod">sim3d_em</a>
       (program)<br><a href="../proc/walk3d~2.html#common-srcmod~4">walk3d</a>
       (subroutine)<br><a href="../program/sim3d.html#common-srcmod~3">sim3d</a>
-      (program)<br><a href="../program/sim3d_em.html#common-srcmod~5">sim3d_em</a>
+      (program)<br><a href="../program/shockfront.html#common-srcmod~5">shockfront</a>
       (program)<br>">
            common /srcmod/        </a>
         
@@ -1114,7 +1069,7 @@
 
         <div class="card">
     <div class="card-header codesum">
-      <span class="anchor" id="common-tmprm~9"></span>
+      <span class="anchor" id="common-tmprm~8"></span>
       <h3>
         <a href="#"
            data-bs-toggle="popover"
@@ -1123,14 +1078,14 @@
            data-bs-title="Used elsewhere:"
            data-bs-content="<a href="../proc/prepareptcl.html#common-tmprm~10">prepareptcl</a>
       (subroutine)<br><a href="../proc/split.html#common-tmprm~11">split</a>
-      (subroutine)<br><a href="../proc/preparecme.html#common-tmprm~4">preparecme</a>
-      (subroutine)<br><a href="../proc/inorout.html#common-tmprm~5">inorout</a>
-      (subroutine)<br><a href="../proc/walk3d.html#common-tmprm~2">walk3d</a>
-      (subroutine)<br><a href="../proc/sksurface.html#common-tmprm~3">sksurface</a>
-      (subroutine)<br><a href="../program/shockfront.html#common-tmprm">shockfront</a>
-      (program)<br><a href="../proc/walk3d~2.html#common-tmprm~7">walk3d</a>
-      (subroutine)<br><a href="../program/sim3d.html#common-tmprm~6">sim3d</a>
-      (program)<br><a href="../program/sim3d_em.html#common-tmprm~8">sim3d_em</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-tmprm">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-tmprm~2">inorout</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-tmprm~4">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-tmprm~3">sim3d_em</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-tmprm~6">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-tmprm~5">sim3d</a>
+      (program)<br><a href="../proc/sksurface.html#common-tmprm~9">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-tmprm~7">shockfront</a>
       (program)<br>">
            common /tmprm/        </a>
         
@@ -1150,7 +1105,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-dmapjul~9"></span>
+              <span class="anchor" id="variable-dmapjul~8"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1166,7 +1121,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-t0org~9"></span>
+              <span class="anchor" id="variable-t0org~8"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1182,7 +1137,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tcme0~9"></span>
+              <span class="anchor" id="variable-tcme0~8"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1198,7 +1153,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tdl~9"></span>
+              <span class="anchor" id="variable-tdl~8"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1214,7 +1169,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-te~9"></span>
+              <span class="anchor" id="variable-te~8"></span>
               real(kind=real64)
             </td>
             <td>
@@ -1270,7 +1225,7 @@
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-07-01 18:52 +0000             </p>
+ on 2025-07-01 22:51 +0000             </p>
           </div>
         </div>
         <br>
