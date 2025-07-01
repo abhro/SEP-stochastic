@@ -81,7 +81,7 @@
     <div class="container">
   <div class="row">
     <h1>vfunc
-      <small>Function</small>
+      <small>Subroutine</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -91,7 +91,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.6% of total for procedures.">16 statements</a>
+                 title=" 4.3% of total for procedures.">122 statements</a>
             </li>
 
         </ul>
@@ -99,7 +99,7 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../program/mapb2s.html'>mapb2s</a></li>
+                <li class="breadcrumb-item"><a href='../module/sim3d_utils.html'>sim3d_utils</a></li>
             <li class="breadcrumb-item active" aria-current="page">vfunc</li>
           </ol>
         </nav>
@@ -120,7 +120,21 @@
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
       <div id="sidebar">
       <h3>Contents</h3>
-  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#common-0"
+         aria-expanded="false" aria-controls="common-0">
+         <h4 class="card-header bg-primary text-white">Common Blocks</h4>
+      </a>
+      <div id="common-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../proc/vfunc~2.html#common-bpark~13">bpark</a>
+            <a class="list-group-item" href="../proc/vfunc~2.html#common-ndmumu~10">ndmumu</a>
+            <a class="list-group-item" href="../proc/vfunc~2.html#common-specie~13">specie</a>
+            <a class="list-group-item" href="../proc/vfunc~2.html#common-srcmod~10">srcmod</a>
+        </div>
+      </div>
+    </div>
+
   
   
   
@@ -147,10 +161,11 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2> function vfunc(t, r, pol) result(v)  
+    <h2>public  subroutine vfunc(t, xpk, dxpkdt, du, gxw2, gxw3, bv0, densw, vpl, gper, b1s)  
 </h2>
     
 
+    <p>Velocity function</p>
 
 
     <h3>Arguments</h3>
@@ -166,7 +181,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-t~10"></span>
+              <span class="anchor" id="variable-t~12"></span>
               real(kind=real64),
             </td>
 <td>intent(in)</td>
@@ -181,7 +196,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-r~15"></span>
+              <span class="anchor" id="variable-xpk~4"></span>
               real(kind=real64),
             </td>
 <td>intent(in)</td>
@@ -189,22 +204,142 @@
               
             </td>
             <td>::</td>
-            <td><strong>r</strong>(3)</td>
+            <td><strong>xpk</strong>(6)</td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-pol~7"></span>
+              <span class="anchor" id="variable-dxpkdt~4"></span>
               real(kind=real64),
             </td>
-<td>intent(in)</td>
+<td>intent(out)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>pol</strong></td>
+            <td><strong>dxpkdt</strong>(6)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-du~5"></span>
+              real(kind=real64)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>du</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-gxw2~4"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gxw2</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-gxw3~4"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gxw3</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bv0~8"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bv0</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-densw~5"></span>
+              real(kind=real64)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densw</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vpl~5"></span>
+              real(kind=real64)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vpl</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-gper~4"></span>
+              real(kind=real64),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gper</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b1s~8"></span>
+              real(kind=real64)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>b1s</strong></td>
             <td>
                 
             </td>
@@ -212,15 +347,477 @@
     </tbody>
   </table>
 
-      <h3>Return Value
-        <small>
-          <span class="anchor" id="variable-v~9"></span>
-          real(kind=real64), (3)
-        </small>
-      </h3>
-      
     <br>
 
+    <section>
+      <h2>Common Blocks</h2>
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-bpark~13"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/read_param.html#common-bpark~10">read_param</a>
+      (subroutine)<br><a href="../proc/cofm.html#common-bpark~17">cofm</a>
+      (subroutine)<br><a href="../proc/solarwind1.html#common-bpark~15">solarwind1</a>
+      (function)<br><a href="../proc/f0mod.html#common-bpark~11">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-bpark~12">split</a>
+      (subroutine)<br><a href="../proc/solarwind.html#common-bpark~14">solarwind</a>
+      (subroutine)<br><a href="../proc/drvbmag.html#common-bpark~16">drvbmag</a>
+      (subroutine)<br><a href="../proc/preparecme.html#common-bpark~4">preparecme</a>
+      (subroutine)<br><a href="../proc/inorout.html#common-bpark~5">inorout</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-bpark~2">walk3d</a>
+      (subroutine)<br><a href="../proc/sksurface.html#common-bpark~3">sksurface</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-bpark">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-bpark~7">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-bpark~6">sim3d</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-bpark~9">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-bpark~8">sim3d_em</a>
+      (program)<br>">
+           common /bpark/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-b1au~13"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>b1au</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-densw0~13"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densw0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-facip~13"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>facip</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k4ok2~14"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k4ok2</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k6ok2~14"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k6ok2</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~14"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vom~13"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vom</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vsw~14"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vsw</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-ndmumu~10"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/read_param.html#common-ndmumu~8">read_param</a>
+      (subroutine)<br><a href="../proc/get_rlambda0.html#common-ndmumu~12">get_rlambda0</a>
+      (function)<br><a href="../proc/set_rlambda.html#common-ndmumu~14">set_rlambda</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-ndmumu~2">shockfront</a>
+      (program)<br><a href="../program/sim3d.html#common-ndmumu~6">sim3d</a>
+      (program)<br>">
+           common /ndmumu/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ndmumu~9"></span>
+              integer
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ndmumu</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-specie~13"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/e2p.html#common-specie">e2p</a>
+      (function)<br><a href="../proc/rp2e.html#common-specie~2">rp2e</a>
+      (function)<br><a href="../proc/rp2beta.html#common-specie~3">rp2beta</a>
+      (function)<br><a href="../proc/beta2p.html#common-specie~4">beta2p</a>
+      (function)<br><a href="../proc/fs0.html#common-specie~14">fs0</a>
+      (function)<br><a href="../proc/prepareptcl.html#common-specie~12">prepareptcl</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-specie~6">walk3d</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-specie~5">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-specie~8">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-specie~7">sim3d</a>
+      (program)<br><a href="../program/arriv_time.html#common-specie~9">arriv_time</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-specie~11">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-specie~10">sim3d_em</a>
+      (program)<br>">
+           common /specie/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rnm~13"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rnm</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rnz~13"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rnz</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+        <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="common-srcmod~10"></span>
+      <h3>
+        <a href="#"
+           data-bs-toggle="popover"
+           data-bs-html="true"
+           data-bs-trigger="focus"
+           data-bs-title="Used elsewhere:"
+           data-bs-content="<a href="../proc/preparefb.html#common-srcmod~11">preparefb</a>
+      (subroutine)<br><a href="../proc/prepareptcl.html#common-srcmod~7">prepareptcl</a>
+      (subroutine)<br><a href="../proc/f0mod.html#common-srcmod~8">f0mod</a>
+      (subroutine)<br><a href="../proc/split.html#common-srcmod~9">split</a>
+      (subroutine)<br><a href="../proc/walk3d.html#common-srcmod~2">walk3d</a>
+      (subroutine)<br><a href="../program/shockfront.html#common-srcmod">shockfront</a>
+      (program)<br><a href="../proc/walk3d~2.html#common-srcmod~4">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d.html#common-srcmod~3">sim3d</a>
+      (program)<br><a href="../proc/walk3d~3.html#common-srcmod~6">walk3d</a>
+      (subroutine)<br><a href="../program/sim3d_em.html#common-srcmod~5">sim3d_em</a>
+      (program)<br>">
+           common /srcmod/        </a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ap~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ap</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-gp~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gp</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-h0~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>h0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scanw~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scanw</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sp~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sp</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sp0~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sp0</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-trgtfs~10"></span>
+              real(kind=real64)
+            </td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>trgtfs</strong>(4)</td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+    </section>
+    <br>
+    <script>
+      $(function () {
+      $('[data-bs-toggle="popover"]').popover()
+      })
+    </script>
 
     
     

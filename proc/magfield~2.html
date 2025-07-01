@@ -81,7 +81,7 @@
     <div class="container">
   <div class="row">
     <h1>magfield
-      <small>Subroutine</small>
+      <small>Function</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -91,7 +91,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 3.4% of total for procedures.">95 statements</a>
+                 title=" 1.4% of total for procedures.">40 statements</a>
             </li>
 
         </ul>
@@ -99,7 +99,7 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../program/maggrid.html'>maggrid</a></li>
+                <li class="breadcrumb-item"><a href='../program/mapb2s.html'>mapb2s</a></li>
             <li class="breadcrumb-item active" aria-current="page">magfield</li>
           </ol>
         </nav>
@@ -147,7 +147,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2> subroutine magfield(rvec, b, bmag, cvtu, gbmag, dbbds, srfctrtl, g, h)  
+    <h2> function magfield(rvec) result(b)  
 </h2>
     
 
@@ -179,129 +179,16 @@
                 
             </td>
         </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-b~9"></span>
-              real(kind=real64),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>b</strong>(3)</td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-bmag~5"></span>
-              real(kind=real64),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>bmag</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-cvtu~12"></span>
-              real(kind=real64),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>cvtu</strong>(3)</td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-gbmag~8"></span>
-              real(kind=real64),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>gbmag</strong>(3)</td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-dbbds~10"></span>
-              real(kind=real64),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>dbbds</strong></td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-srfctrtl~2"></span>
-              real(kind=real64),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>srfctrtl</strong>(NS,NS)</td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-g~7"></span>
-              real(kind=real64),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>g</strong>(0:NS,0:NS)</td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-h~7"></span>
-              real(kind=real64),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>h</strong>(0:NS,0:NS)</td>
-            <td>
-                
-            </td>
-        </tr>
     </tbody>
   </table>
 
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-b~5"></span>
+          real(kind=real64), (3)
+        </small>
+      </h3>
+      
     <br>
 
 
